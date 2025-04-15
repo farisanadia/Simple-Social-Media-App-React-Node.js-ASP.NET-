@@ -1,0 +1,49 @@
+# Global
+.DS_Store
+Thumbs.db
+*.log
+
+# Node (React frontend)
+**/node_modules/
+**/build/
+**/.env.local
+**/.env.development.local
+**/.env.test.local
+**/.env.production.local
+
+# npm/yarn lockfiles (optional to ignore, some teams commit this for consistency)
+# Uncomment if you don't want to track them:
+# package-lock.json
+# yarn.lock
+
+# VS Code settings (optional)
+.vscode/
+
+# .NET (backend)
+**/bin/
+**/obj/
+**/out/
+**/.vs/
+**/Properties/launchSettings.json
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*.sln.cache
+
+# ASP.NET Secrets (in dev)
+secrets.json
+
+# Build artifacts
+**/publish/
+**/wwwroot/lib/
+
+# Other
+.env
