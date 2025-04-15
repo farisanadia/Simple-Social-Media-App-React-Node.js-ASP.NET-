@@ -3,6 +3,11 @@ Simple application that allows users to share posts with other people, read othe
 
 Built using React, Node.js, and ASP.NET (C#).
 
+## TO RUN:
+cd into frontend: `npm start`
+
+cd into backend: `dotnet run`
+
 ## TODO:
 ### To Fix:
 - [ ] change posts to also contain userid so i can find them based on user id ==> change finduserposts to use userid instead of username
