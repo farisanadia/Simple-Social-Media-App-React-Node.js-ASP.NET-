@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SimpleSocialAppBackend.Models;
 using SimpleSocialAppBackend.Services;
+using BCrypt.Net;
 
 namespace SimpleSocialAppBackend.Controllers
 {
@@ -23,13 +24,19 @@ namespace SimpleSocialAppBackend.Controllers
         // IActionResult appropriate when multiple ActionResult types are 
         // possible in an action.
         [HttpPost("createUser")]
-        public IActionResult CreateUser([FromBody] User newUser)
+        public IActionResult CreateUser([FromBody] RegisterUser user)
         {
             Console.Write("creating user");
             try
             {
+                var hashedPassword = BCrypt.Net.BCrypt.HashPassword(user.Password);
+                var newUser = new User
+                {
+                    Username = user.Username,
+                    PasswordHash = hashedPassword
+                };
                 var createdUser = _userService.Create(newUser);
-                return Ok(createdUser); // returns json
+                return Ok(new { username = newUser.Username, id = newUser.Id }); // returns json
             }
             catch (Exception ex)
             {

@@ -9,12 +9,16 @@ builder.Services.AddSwaggerGen();
 
 // registers a service to be created once only during its life time
 builder.Services.AddSingleton<UserService>();
+builder.Services.AddSingleton<PostService>();
 
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll",
-        policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+    options.AddPolicy("AllowFrontend",
+        policy => policy
+            .WithOrigins("http://localhost:3000")
+            .AllowAnyMethod()
+            .AllowAnyHeader());
 });
 
 var app = builder.Build();
@@ -28,7 +32,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors("AllowAll");
+app.UseCors("AllowFrontend");
 
 app.UseAuthorization();
 

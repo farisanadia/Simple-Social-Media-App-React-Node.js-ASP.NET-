@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import PostComponent from "./components/PostComponent";
+import CreatePost from "./components/CreatePost";
+import { Link } from "react-router-dom";
 
 function App() {
   const [username, setUsername] = useState("");
@@ -68,7 +71,9 @@ function App() {
       <h1>Simple Social App</h1>
       {user && user.username ? (      
         <div>
-          <h2>{user.username}</h2>
+          <Link to="/profile">{user.username}</Link>
+          <CreatePost />
+          <PostComponent/>
           <button onClick={deleteAccount}>Delete Account</button>
         </div>
       ) : 
