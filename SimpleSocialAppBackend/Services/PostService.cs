@@ -44,5 +44,25 @@ namespace SimpleSocialAppBackend.Services
             _posts.RemoveAll(p => p.UserId == userId);
             SaveToFile();
         }
+
+        public Post? GetById(Guid id)
+        {
+            return _posts.FirstOrDefault(p => id.Equals(p.Id));
+        }
+
+        public void Update(Post post)
+        {
+            Console.Write(post);
+            var index = _posts.FindIndex(p => p.Id == post.Id);
+            if (index != -1)
+            {
+                _posts[index] = post;
+                SaveToFile(); // Persist the changes
+            }
+            else
+            {
+                throw new Exception("Post not found.");
+    }
+        }
     }
 }

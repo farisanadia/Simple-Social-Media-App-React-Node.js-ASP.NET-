@@ -17,13 +17,12 @@ cd into backend: `dotnet run`
 - [x] log in
 - [x] log out
 - [x] delete account. when user deletes account, all posts posted by user should also be deleted.
-- [ ] clean up functions handling accounts
 
 ### Posts:
 - [x] create post
 - [x] view other peoples post
 - [x] view your own post
-- [ ] edit posts
+- [x] edit your own posts
 - [ ] delete your own posts
 - [ ] comment on other peoples posts
 - [ ] thumbs up/thumbs down?

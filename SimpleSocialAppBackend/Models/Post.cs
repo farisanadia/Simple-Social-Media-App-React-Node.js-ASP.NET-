@@ -2,7 +2,7 @@ namespace SimpleSocialAppBackend.Models
 {
     public class Post
     {
-        public String Id { get; set; } = string.Empty;
+        public Guid Id { get; set; }
         public string Author { get; set; } = string.Empty;
         public Guid UserId { get; set;}
         public string Content { get; set; } = string.Empty;

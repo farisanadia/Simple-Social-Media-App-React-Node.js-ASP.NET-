@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PostComponent from "./PostComponent";
 
 function Profile() {
   const [posts, setPosts] = useState([]);
@@ -41,9 +42,10 @@ function Profile() {
       (
         <div>
         {posts.map((post) => (
-          <li key={post.id}>{post.author} {post.content} {post.timestamp}</li>
+          <PostComponent key={post.id} post={post} user={user}/>
         ))}
         </div>
+
       ) : (
         <h2> no posts </h2>
     )}

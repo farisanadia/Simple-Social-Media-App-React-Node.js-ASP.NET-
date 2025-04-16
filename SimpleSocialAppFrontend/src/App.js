@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import PostComponent from "./components/PostComponent";
 import CreatePost from "./components/CreatePost";
 import { Link } from "react-router-dom";
 import Login from "./components/Login";
 import CreateAccount from "./components/CreateAccount";
+import HomePage from "./components/HomePage";
 
 function App() {
   const [user, setUser] = useState({});
@@ -41,7 +41,7 @@ function App() {
         <div>
           <Link to="/profile">{user.username}</Link>
           <CreatePost />
-          <PostComponent />
+          <HomePage user={user}/>
           <button onClick={deleteAccount}>Delete Account</button>
           <button onClick={logout}>Log Out</button>
         </div>

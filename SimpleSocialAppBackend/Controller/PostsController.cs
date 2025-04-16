@@ -42,5 +42,22 @@ namespace SimpleSocialAppBackend.Controllers
           var posts = _postService.GetUserPosts(id);
           return Ok(posts);
         }
+
+
+        [HttpPut("updatePost")]
+        public ActionResult<Post> updatePost([FromBody] UpdatePost updatedPost)
+        {
+          Console.Write("updating post");
+          Console.Write(updatedPost.Id);
+          var existingPost = _postService.GetById(updatedPost.Id);
+          if (existingPost == null)
+          {
+            return NotFound(new { message = "Post not found." });
+          }
+          existingPost.Content = updatedPost.Content;
+          existingPost.Timestamp = updatedPost.Timestamp;
+          _postService.Update(existingPost);
+          return Ok(existingPost);
+        }
     }
 }
