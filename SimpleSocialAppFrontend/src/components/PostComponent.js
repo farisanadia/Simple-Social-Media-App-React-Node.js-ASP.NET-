@@ -14,19 +14,17 @@ const PostComponent = () => {
         console.log(err.message);
       })
   }, []);
-  
+
   return (
     <div className="post-printer">
       <h2>Posts</h2>
       {posts ? 
       (
-        <>
+        <div>
         {posts.map((post) => (
-          <>
-            <li>{post.author} {post.content} {post.timestamp}</li>
-          </>
+            <li key={post.id}>{post.author} {post.content} {post.timestamp}</li>
         ))}
-        </>
+        </div>
       ) : (
         <h2> no posts </h2>
       )}

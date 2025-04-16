@@ -7,9 +7,11 @@ namespace SimpleSocialAppBackend.Services
     {
         private readonly string filePath = "Data/users.json";
         private List<User> users;
+        private readonly PostService _postService;
 
-        public UserService()
+        public UserService(PostService postService)
         {
+            _postService = postService;
             if (File.Exists(filePath))
             {
                 string json = File.ReadAllText(filePath);
@@ -37,20 +39,25 @@ namespace SimpleSocialAppBackend.Services
             File.WriteAllText(filePath, json);
         }
 
-        public User Delete(Guid id)
+        public User? Delete(Guid id)
         {   
             Console.Write(id);
             var userToDelete = users.FirstOrDefault(u => id.Equals(u.Id));
             Console.Write(userToDelete);
-            Console.Write("here");
             if (userToDelete != null)
             {
                 users.Remove(userToDelete);
                 Console.Write(userToDelete);
+                _postService.DeleteByUserId(id);
                 SaveToFile();
             }
 
             return userToDelete;
         }
+
+        public User? GetByUsername(string username)
+        {
+            return users.FirstOrDefault(u => u.Username == username);
+       }
     }
 }

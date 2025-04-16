@@ -27,6 +27,7 @@ const CreatePost = () => {
     const post = {
       id: uuid,
       author: user.username,
+      userId: user.id,
       content: contents,
       timestamp: timestamp
     }

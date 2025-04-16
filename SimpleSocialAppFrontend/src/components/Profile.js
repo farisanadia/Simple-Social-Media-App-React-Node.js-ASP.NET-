@@ -17,9 +17,9 @@ function Profile() {
   }, []);
 
   useEffect(() => {
-    if (user && user.username) {
-      console.log("Fetching posts for:", user.username);
-      fetch(`/api/posts/getUserPosts?id=${user.username}`, {
+    if (user && user.id) {
+      console.log("Fetching posts for:", user.id);
+      fetch(`/api/posts/getUserPosts?id=${user.id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"
@@ -39,13 +39,11 @@ function Profile() {
     <h2>profile</h2>
     {posts ? 
       (
-        <>
+        <div>
         {posts.map((post) => (
-          <>
-            <li>{post.author} {post.content} {post.timestamp}</li>
-          </>
+          <li key={post.id}>{post.author} {post.content} {post.timestamp}</li>
         ))}
-        </>
+        </div>
       ) : (
         <h2> no posts </h2>
     )}

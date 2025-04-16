@@ -37,7 +37,7 @@ namespace SimpleSocialAppBackend.Controllers
         }
 
         [HttpGet("getUserPosts")]
-        public ActionResult<List<Post>> getUserPosts([FromQuery] string id)
+        public ActionResult<List<Post>> getUserPosts([FromQuery] Guid id)
         {
           var posts = _postService.GetUserPosts(id);
           return Ok(posts);

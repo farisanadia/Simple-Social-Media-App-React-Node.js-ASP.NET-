@@ -34,9 +34,15 @@ namespace SimpleSocialAppBackend.Services
             File.WriteAllText(_filePath, json);
         }
 
-        public List<Post> GetUserPosts(string username)
+        public List<Post> GetUserPosts(Guid userId)
         {
-            return _posts.Where(p => p.Author == username).ToList();
+            return _posts.Where(p => p.UserId == userId).ToList();
+        }
+
+        public void DeleteByUserId(Guid userId)
+        {
+            _posts.RemoveAll(p => p.UserId == userId);
+            SaveToFile();
         }
     }
 }

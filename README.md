@@ -10,13 +10,14 @@ cd into backend: `dotnet run`
 
 ## TODO:
 ### To Fix:
-- [ ] change posts to also contain userid so i can find them based on user id ==> change finduserposts to use userid instead of username
+- [x] change posts to also contain userid so i can find them based on user id ==> change finduserposts to use userid instead of username
 
 ### Users:
 - [x] create user
-- [ ] log in
-- [ ] log out
-- [ ] delete account
+- [x] log in
+- [x] log out
+- [x] delete account. when user deletes account, all posts posted by user should also be deleted.
+- [ ] clean up functions handling accounts
 
 ### Posts:
 - [x] create post

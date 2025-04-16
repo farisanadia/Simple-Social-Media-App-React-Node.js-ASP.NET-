@@ -1,7 +1,7 @@
+using BCrypt.Net;
 using Microsoft.AspNetCore.Mvc;
 using SimpleSocialAppBackend.Models;
 using SimpleSocialAppBackend.Services;
-using BCrypt.Net;
 
 namespace SimpleSocialAppBackend.Controllers
 {
@@ -41,6 +41,31 @@ namespace SimpleSocialAppBackend.Controllers
             catch (Exception ex)
             {
                 return BadRequest(new { message = ex.Message }); // returns json
+            }
+        }
+
+        [HttpPost("loginUser")]
+        public IActionResult LoginUser([FromBody] RegisterUser user)
+        {
+            Console.Write("logging in");
+            try {
+                var existingUser = _userService.GetByUsername(user.Username);
+                if (existingUser == null)
+                {
+                    return Unauthorized(new { message = "User not found"} );
+                }
+
+                bool isPasswordValid = BCrypt.Net.BCrypt.Verify(user.Password, existingUser.PasswordHash);
+                if (!isPasswordValid)
+                {
+                    return Unauthorized(new { message = "Invalid password"} );
+                }
+                return Ok(new { username = existingUser.Username, id = existingUser.Id });
+
+            } 
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
             }
         }
 
