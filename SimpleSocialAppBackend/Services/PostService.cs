@@ -28,6 +28,18 @@ namespace SimpleSocialAppBackend.Services
           return _posts;
         }
 
+        public Post? Delete(Guid postId)
+        {
+            Console.Write(postId);
+            var postToDelete = _posts.FirstOrDefault(p => postId.Equals(p.Id));
+            if (postToDelete != null)
+            {
+                _posts.Remove(postToDelete);
+                SaveToFile();
+            }
+            return postToDelete;
+        }
+
          private void SaveToFile()
         {
             string json = JsonSerializer.Serialize(_posts, new JsonSerializerOptions { WriteIndented = true });

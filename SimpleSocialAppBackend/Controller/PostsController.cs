@@ -15,6 +15,11 @@ namespace SimpleSocialAppBackend.Controllers
             _postService = postService;
         }
 
+        public class DeletePostRequest
+        {
+          public Guid Id { get; set; }
+        }
+
         [HttpGet]
         public ActionResult<List<Post>> GetAll()
         {
@@ -58,6 +63,15 @@ namespace SimpleSocialAppBackend.Controllers
           existingPost.Timestamp = updatedPost.Timestamp;
           _postService.Update(existingPost);
           return Ok(existingPost);
+        }
+
+        [HttpDelete("deletePost")]
+        public IActionResult deletePost([FromBody] DeletePostRequest request)
+        {
+          Console.Write("deleting user");
+          Console.Write(request.Id);
+          _postService.Delete(request.Id);
+          return NoContent();
         }
     }
 }

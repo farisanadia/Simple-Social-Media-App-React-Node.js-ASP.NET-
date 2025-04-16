@@ -25,7 +25,7 @@ cd into backend: `dotnet run`
 - [x] edit your own posts
 - [ ] delete your own posts
 - [ ] comment on other peoples posts
-- [ ] thumbs up/thumbs down?
+- [ ] thumbs up/thumbs down
 
 ### UI:
 - [ ] main screen ui

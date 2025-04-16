@@ -35,6 +35,26 @@ const PostComponent = ({ post, user }) => {
       .catch(err => console.error("Error:", err));
   };
 
+  const handleDelete = (e) => {
+    e.preventDefault();
+    fetch("/api/posts/deletePost", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        id: post.id,
+      })
+    }) 
+    .then(() => {
+      console.log("Post deleted");
+      setNewContent("");
+      setIsEditing(false);
+      window.location.reload();
+    })
+    .catch(err => console.error("Error:", err));
+  }
+
 
   return (
     <div>
@@ -52,7 +72,10 @@ const PostComponent = ({ post, user }) => {
         <>
           <p>{post.content}</p>
           {user.id == post.userId ? (
-              <button onClick={handleEditToggle}>Edit</button>
+              <div>
+                <button onClick={handleEditToggle}>Edit</button>
+                <button onClick={handleDelete}>Delete</button>
+              </div>
           ) : (
             <></>
           )}
