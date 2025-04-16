@@ -1,6 +1,0 @@
-@SimpleSocialAppBackend_HostAddress = http://localhost:5030
-
-GET {{SimpleSocialAppBackend_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
