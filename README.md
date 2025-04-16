@@ -23,7 +23,7 @@ cd into backend: `dotnet run`
 - [x] view other peoples post
 - [x] view your own post
 - [x] edit your own posts
-- [ ] delete your own posts
+- [x] delete your own posts
 - [ ] comment on other peoples posts
 - [ ] thumbs up/thumbs down
 
