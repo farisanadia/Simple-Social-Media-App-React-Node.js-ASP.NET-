@@ -28,6 +28,21 @@ namespace SimpleSocialAppBackend.Services
           return _posts;
         }
 
+        public Comment CreateComment(Comment comment)
+        {
+            var postToComment = _posts.FirstOrDefault(p => comment.PostId.Equals(p.Id));
+            if (postToComment != null)
+            {
+                postToComment.Comments.Add(comment);
+                SaveToFile();
+                return comment;
+            }            
+            else
+            {
+                throw new Exception("Comment not found.");
+            }
+        }
+
         public Post? Delete(Guid postId)
         {
             Console.Write(postId);
@@ -74,7 +89,7 @@ namespace SimpleSocialAppBackend.Services
             else
             {
                 throw new Exception("Post not found.");
-    }
+            }
         }
     }
 }

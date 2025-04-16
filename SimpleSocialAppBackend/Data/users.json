@@ -1,2 +1,12 @@
 [
+  {
+    "Id": "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50",
+    "Username": "farisa",
+    "PasswordHash": "$2a$11$swipH8DvxCbTZpKGwxqY9eV75Uuso2Q.eFhmcEmjgW4asgA1Svu6e"
+  },
+  {
+    "Id": "7d567124-257b-4791-bba1-1773c8692ba5",
+    "Username": "test",
+    "PasswordHash": "$2a$11$TFUbCbw/J.P5/l.pu0M7DuyCJMf5pemCWptXEBs8Q6WhNMKR8sudS"
+  }
 ]

@@ -35,9 +35,25 @@ namespace SimpleSocialAppBackend.Controllers
             var createdPost = _postService.Create(post);
             return Ok(createdPost);
           }
-          catch (Exception ex)
+          catch (Exception e)
           {
-            return BadRequest(new { message = ex.Message });
+            return BadRequest(new { message = e.Message });
+          }
+        }
+
+        
+        [HttpPost("createComment")]
+        public IActionResult createComment([FromBody] Comment comment)
+        {
+          Console.Write("uploading comment");
+          try
+          {
+            var createdComment = _postService.CreateComment(comment);
+            return Ok(createdComment);
+          }
+          catch (Exception e)
+          {
+            return BadRequest(new { message = e.Message });
           }
         }
 

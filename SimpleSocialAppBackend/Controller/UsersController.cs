@@ -1,4 +1,3 @@
-using BCrypt.Net;
 using Microsoft.AspNetCore.Mvc;
 using SimpleSocialAppBackend.Models;
 using SimpleSocialAppBackend.Services;
