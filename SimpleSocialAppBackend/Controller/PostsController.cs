@@ -20,6 +20,12 @@ namespace SimpleSocialAppBackend.Controllers
           public Guid Id { get; set; }
         }
 
+        public class LikeRequest
+        {
+          public Guid PostId { get; set; }
+          public Guid UserId { get; set; }
+        }
+
 
         [HttpGet]
         public ActionResult<List<Post>> GetAll()
@@ -74,6 +80,22 @@ namespace SimpleSocialAppBackend.Controllers
           Console.Write(request.Id);
           _postService.Delete(request.Id);
           return NoContent();
+        }
+
+        [HttpPost("likePost")]
+        public IActionResult LikePost([FromBody] LikeRequest request)
+        {
+            Console.Write("liking post");
+            _postService.Like(request.PostId, request.UserId);
+            return NoContent();
+        }
+
+        [HttpPost("dislikePost")]
+        public IActionResult DislikePost([FromBody] LikeRequest request)
+        {
+            Console.Write("Disliking post");
+            _postService.Dislike(request.PostId, request.UserId);
+            return NoContent();
         }
 
     }

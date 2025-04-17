@@ -41,6 +41,7 @@ namespace SimpleSocialAppBackend.Services
                 Author = post.Author,
                 Content = post.Content,
                 Timestamp = post.Timestamp,
+                Likes = post.Likes,
                 UserId = post.UserId,
                 ParentId = post.ParentId,
                 Replies = new List<Post>()
@@ -143,6 +144,41 @@ namespace SimpleSocialAppBackend.Services
             {
                 throw new Exception("Post not found.");
             }
+        }
+
+        public void Like(Guid postId, Guid userId)
+        {
+            var post = _posts.FirstOrDefault(p => p.Id == postId);
+            if (post!=null)
+            {
+                post.Likes.Add(userId);
+                SaveToFile();
+            } else {
+                throw new Exception("Post not found");
+            }
+        }
+
+        public void Dislike(Guid postId, Guid userId)
+        {
+            var post = _posts.FirstOrDefault(p => p.Id == postId);
+            if (post!=null)
+            {
+                post.Likes.Remove(userId);
+                SaveToFile();
+            } else {
+                throw new Exception("Post not found");
+            }
+        }
+
+        public void RemoveLikesByUserId(Guid userId)
+        {
+            foreach (var post in _posts)
+            {
+                // Remove the userId from the Likes list if it exists
+                post.Likes.Remove(userId);
+            }
+
+            SaveToFile();
         }
     }
 }

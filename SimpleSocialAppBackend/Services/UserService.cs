@@ -49,6 +49,7 @@ namespace SimpleSocialAppBackend.Services
                 users.Remove(userToDelete);
                 Console.Write(userToDelete);
                 _postService.DeleteByUserId(id);
+                _postService.RemoveLikesByUserId(id);  
                 SaveToFile();
             }
 

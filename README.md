@@ -9,18 +9,22 @@ cd into frontend: `npm start`
 cd into backend: `dotnet run`
 
 ## TODO:
+
 ### To Fix:
+
 - [x] change posts to also contain userid so i can find them based on user id ==> change finduserposts to use userid instead of username
 - [x] treat comment as post object, but somehow indicate that it is a post. this allows me to edit and delete my comments, as well as reply to comments.
 - [ ] clean up entire code base, ensuring it complies with OOP and SOLID principles, and uses ASP.NET and C# best practices.
 
-### Users:
+### Main Functionality:
+
+#### Users:
 - [x] create user
 - [x] log in
 - [x] log out
 - [x] delete account. when user deletes account, all posts posted by user should also be deleted.
 
-### Posts:
+#### Posts:
 - [x] create post
 - [x] view other peoples post
 - [x] view your own post
@@ -28,8 +32,8 @@ cd into backend: `dotnet run`
 - [x] delete your own posts
 - [x] comment on other peoples posts
 - [x] delete comment
-- [ ] thumbs up/thumbs down
+- [x] thumbs up/thumbs down
 
-### UI:
+#### UI:
 - [ ] main screen ui
 - [ ] profile ui

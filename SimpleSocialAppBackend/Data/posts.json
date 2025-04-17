@@ -1,2 +1,51 @@
 [
+  {
+    "Id": "44c362d8-2fa7-4691-9b0c-c21b1e5cca22",
+    "Author": "farisa",
+    "UserId": "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50",
+    "Content": "hu",
+    "Timestamp": "2025-04-17T15:46:32",
+    "Likes": [
+      "7af9bc8a-4137-4daf-bd3d-ffa814b030e1"
+    ],
+    "ParentId": null,
+    "Replies": []
+  },
+  {
+    "Id": "9696be65-a723-4bdb-b143-bad8e471cb35",
+    "Author": "farisa",
+    "UserId": "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50",
+    "Content": "asdasd",
+    "Timestamp": "2025-04-17T16:04:16.349Z",
+    "Likes": [
+      "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50"
+    ],
+    "ParentId": "44c362d8-2fa7-4691-9b0c-c21b1e5cca22",
+    "Replies": []
+  },
+  {
+    "Id": "5cf5fee6-a278-47d0-8fc0-4717f4b8b439",
+    "Author": "farisa",
+    "UserId": "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50",
+    "Content": "adasd",
+    "Timestamp": "2025-04-17T16:04:23.784Z",
+    "Likes": [
+      "7af9bc8a-4137-4daf-bd3d-ffa814b030e1"
+    ],
+    "ParentId": "9696be65-a723-4bdb-b143-bad8e471cb35",
+    "Replies": []
+  },
+  {
+    "Id": "893a0861-b50d-441d-abef-1ec378f3a6c0",
+    "Author": "farisa",
+    "UserId": "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50",
+    "Content": "adasd",
+    "Timestamp": "2025-04-17T16:04:26.104Z",
+    "Likes": [
+      "7af9bc8a-4137-4daf-bd3d-ffa814b030e1",
+      "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50"
+    ],
+    "ParentId": "44c362d8-2fa7-4691-9b0c-c21b1e5cca22",
+    "Replies": []
+  }
 ]

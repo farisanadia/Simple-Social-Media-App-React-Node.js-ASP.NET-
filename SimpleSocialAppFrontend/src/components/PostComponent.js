@@ -67,6 +67,31 @@ const PostComponent = ({ post, user, level = 0 }) => {
     .catch(err => console.error("Error:", err));
   };
 
+  const handleSubmitLike = (e) => {
+    e.preventDefault();
+    console.log(post)
+    let isLiked = false;
+    if (post.likes) { isLiked = post.likes.includes(user.id); 
+      console.log("Reached")
+     };
+
+    fetch(`/api/posts/${isLiked ? 'dislikePost' : 'likePost'}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        postId: post.id,
+        userId: user.id
+      })
+    })
+    .then(() => {
+      console.log("like submitted");
+      window.location.reload();
+    })
+    .catch(err => console.error("Error liking post:", err));
+  }
+
   const handleDelete = (e) => {
     e.preventDefault();
     fetch("/api/posts/deletePost", {
@@ -105,6 +130,7 @@ const PostComponent = ({ post, user, level = 0 }) => {
         <>
           <p><strong>{post.author}</strong>: {post.content}</p>
           <p><small>{new Date(post.timestamp).toLocaleString()}</small></p>
+          <p>{post.likes?.length || 0} {post.likes?.length === 1 ? "like" : "likes"}</p>
 
           {user.id === post.userId && (
             <div>
@@ -126,7 +152,12 @@ const PostComponent = ({ post, user, level = 0 }) => {
               </div>
             </form>
           ) : (
-            <button onClick={handleCommentToggle}>Reply</button>
+            <div>
+              <button onClick={handleCommentToggle}>Reply</button>
+              <button onClick={handleSubmitLike}>
+                {post.likes?.includes(user.id) ? "Dislike" : "Like"}
+              </button>
+            </div>
           )}
         </>
       )}
