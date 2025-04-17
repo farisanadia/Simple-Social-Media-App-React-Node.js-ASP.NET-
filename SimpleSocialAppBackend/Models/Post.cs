@@ -6,7 +6,9 @@ namespace SimpleSocialAppBackend.Models
         public string Author { get; set; } = string.Empty;
         public Guid UserId { get; set;}
         public string Content { get; set; } = string.Empty;
-        public List<Comment> Comments { get; set; } = new List<Comment>();
         public DateTime Timestamp { get; set; }
+        // if parentId is null, it is a post. Else it is a comment
+        public Guid? ParentId { get; set; }
+        public List<Post> Replies { get; set; } = new List<Post>();
     }
 }

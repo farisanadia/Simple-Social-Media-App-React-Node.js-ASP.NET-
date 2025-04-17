@@ -20,6 +20,7 @@ namespace SimpleSocialAppBackend.Controllers
           public Guid Id { get; set; }
         }
 
+
         [HttpGet]
         public ActionResult<List<Post>> GetAll()
         {
@@ -41,21 +42,6 @@ namespace SimpleSocialAppBackend.Controllers
           }
         }
 
-        
-        [HttpPost("createComment")]
-        public IActionResult createComment([FromBody] Comment comment)
-        {
-          Console.Write("uploading comment");
-          try
-          {
-            var createdComment = _postService.CreateComment(comment);
-            return Ok(createdComment);
-          }
-          catch (Exception e)
-          {
-            return BadRequest(new { message = e.Message });
-          }
-        }
 
         [HttpGet("getUserPosts")]
         public ActionResult<List<Post>> getUserPosts([FromQuery] Guid id)
@@ -84,10 +70,11 @@ namespace SimpleSocialAppBackend.Controllers
         [HttpDelete("deletePost")]
         public IActionResult deletePost([FromBody] DeletePostRequest request)
         {
-          Console.Write("deleting user");
+          Console.Write("deleting post");
           Console.Write(request.Id);
           _postService.Delete(request.Id);
           return NoContent();
         }
+
     }
 }

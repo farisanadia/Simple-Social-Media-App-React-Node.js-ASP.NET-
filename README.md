@@ -11,7 +11,7 @@ cd into backend: `dotnet run`
 ## TODO:
 ### To Fix:
 - [x] change posts to also contain userid so i can find them based on user id ==> change finduserposts to use userid instead of username
-- [ ] store comments as its own .json with postid, when retrieving posts append comments with same postid. this is so that i can delete end edit individual comments. will be difficult to sync data.
+- [x] treat comment as post object, but somehow indicate that it is a post. this allows me to edit and delete my comments, as well as reply to comments.
 - [ ] clean up entire code base, ensuring it complies with OOP and SOLID principles, and uses ASP.NET and C# best practices.
 
 ### Users:
@@ -27,6 +27,7 @@ cd into backend: `dotnet run`
 - [x] edit your own posts
 - [x] delete your own posts
 - [x] comment on other peoples posts
+- [x] delete comment
 - [ ] thumbs up/thumbs down
 
 ### UI:

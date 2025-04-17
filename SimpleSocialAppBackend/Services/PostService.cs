@@ -17,45 +17,78 @@ namespace SimpleSocialAppBackend.Services
             _posts = JsonSerializer.Deserialize<List<Post>>(json) ?? new List<Post>();
         }
 
-        public List<Post> GetAll() => _posts;
+        public List<Post> GetAll() => GetAllNested();
 
         public List<Post> Create(Post post)
         {
-          if (_posts.Any(p => p.Id == post.Id))
-            throw new Exception("Error creating post, duplicate id submitted");
-          _posts.Add(post);
-          SaveToFile();
-          return _posts;
+            if (_posts.Any(p => p.Id == post.Id))
+                throw new Exception("Error creating post, duplicate id submitted");
+
+            if (post.ParentId != null && !_posts.Any(p => p.Id == post.ParentId))
+                throw new Exception("Parent post not found.");
+
+            _posts.Add(post);
+            SaveToFile();
+
+            return GetAllNested();
         }
 
-        public Comment CreateComment(Comment comment)
+        private Post ClonePost(Post post)
         {
-            var postToComment = _posts.FirstOrDefault(p => comment.PostId.Equals(p.Id));
-            if (postToComment != null)
+            return new Post
             {
-                postToComment.Comments.Add(comment);
-                SaveToFile();
-                return comment;
-            }            
-            else
+                Id = post.Id,
+                Author = post.Author,
+                Content = post.Content,
+                Timestamp = post.Timestamp,
+                UserId = post.UserId,
+                ParentId = post.ParentId,
+                Replies = new List<Post>()
+            };
+        }
+
+        private List<Post> GetAllNested()
+        {
+            var clonedPosts = _posts.Select(ClonePost).ToList();
+            var lookup = clonedPosts.ToLookup(p => p.ParentId);
+            var postById = clonedPosts.ToDictionary(p => p.Id);
+
+            foreach (var post in clonedPosts)
             {
-                throw new Exception("Comment not found.");
+                if (post.ParentId != null && postById.ContainsKey((Guid)post.ParentId))
+                {
+                    postById[(Guid)post.ParentId].Replies.Add(post);
+                }
             }
+
+            return clonedPosts.Where(p => p.ParentId == null).ToList();
         }
 
         public Post? Delete(Guid postId)
         {
-            Console.Write(postId);
-            var postToDelete = _posts.FirstOrDefault(p => postId.Equals(p.Id));
+            var postToDelete = _posts.FirstOrDefault(p => p.Id == postId);
             if (postToDelete != null)
             {
+                DeleteRepliesRecursive(postToDelete);
                 _posts.Remove(postToDelete);
                 SaveToFile();
             }
+
             return postToDelete;
         }
 
-         private void SaveToFile()
+        private void DeleteRepliesRecursive(Post post)
+        {
+            var replies = _posts.Where(p => p.ParentId == post.Id).ToList();
+
+            foreach (var reply in replies)
+            {
+                DeleteRepliesRecursive(reply);
+                _posts.Remove(reply);
+            }
+        }
+
+        private void SaveToFile()
         {
             string json = JsonSerializer.Serialize(_posts, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(_filePath, json);
@@ -63,7 +96,28 @@ namespace SimpleSocialAppBackend.Services
 
         public List<Post> GetUserPosts(Guid userId)
         {
-            return _posts.Where(p => p.UserId == userId).ToList();
+            foreach (var post in _posts)
+                post.Replies = new List<Post>();
+
+            var lookup = _posts.ToLookup(p => p.ParentId);
+
+            void PopulateReplies(Post post)
+            {
+                foreach (var reply in lookup[post.Id])
+                {
+                    post.Replies.Add(reply);
+                    PopulateReplies(reply);
+                }
+            }
+
+            var topLevelPosts = _posts
+                .Where(p => p.UserId == userId && p.ParentId == null)
+                .ToList();
+
+            foreach (var post in topLevelPosts)
+                PopulateReplies(post);
+
+            return topLevelPosts;
         }
 
         public void DeleteByUserId(Guid userId)
@@ -74,17 +128,16 @@ namespace SimpleSocialAppBackend.Services
 
         public Post? GetById(Guid id)
         {
-            return _posts.FirstOrDefault(p => id.Equals(p.Id));
+            return _posts.FirstOrDefault(p => p.Id == id);
         }
 
         public void Update(Post post)
         {
-            Console.Write(post);
             var index = _posts.FindIndex(p => p.Id == post.Id);
             if (index != -1)
             {
                 _posts[index] = post;
-                SaveToFile(); // Persist the changes
+                SaveToFile();
             }
             else
             {
