@@ -39,7 +39,11 @@ namespace SimpleSocialAppBackend.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = ex.Message }); // returns json
+                if (ex.Message == "Username already taken.")
+                {
+                    return Conflict(new { message = ex.Message }); // HTTP 409
+                }
+                return StatusCode(500, new { message = "Something went wrong while creating the account." });
             }
         }
 
@@ -51,20 +55,20 @@ namespace SimpleSocialAppBackend.Controllers
                 var existingUser = _userService.GetByUsername(user.Username);
                 if (existingUser == null)
                 {
-                    return Unauthorized(new { message = "User not found"} );
+                    return Unauthorized(new { message = "User not found" });
                 }
 
                 bool isPasswordValid = BCrypt.Net.BCrypt.Verify(user.Password, existingUser.PasswordHash);
                 if (!isPasswordValid)
                 {
-                    return Unauthorized(new { message = "Invalid password"} );
+                    return Unauthorized(new { message = "Invalid password" });
                 }
                 return Ok(new { username = existingUser.Username, id = existingUser.Id });
 
             } 
             catch (Exception ex)
             {
-                return BadRequest(new { message = ex.Message });
+                return StatusCode(500, new { message = ex.Message });
             }
         }
 

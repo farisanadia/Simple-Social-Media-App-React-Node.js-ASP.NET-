@@ -35,5 +35,8 @@ cd into backend: `dotnet run`
 - [x] thumbs up/thumbs down
 
 #### UI:
-- [ ] main screen ui
+- [ ] login/create account ui
+- [ ] post component ui
+- [ ] post creation ui
+- [ ] homepage ui
 - [ ] profile ui
