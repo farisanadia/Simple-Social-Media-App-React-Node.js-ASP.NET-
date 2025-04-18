@@ -5,6 +5,8 @@ import Login from "./components/Login";
 import CreateAccount from "./components/CreateAccount";
 import HomePage from "./components/HomePage";
 import Header from "./components/Header";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
 function App() {
@@ -28,11 +30,10 @@ function App() {
   return (
     <>
     {user && user.username && <Header user={user} setUser={setUser} />}
-    
+
     <main>
       {user && user.username ? (
-        <div style={{ width: "50%", minWidth: "300px" }}>
-          <CreatePost />
+        <div style={{ width: "30%", minWidth: "500px", display: "flex", flexDirection:"column", alignItems: "center", justifyContent: "center" }}>
           <HomePage user={user}/>
         </div>
       ) : (

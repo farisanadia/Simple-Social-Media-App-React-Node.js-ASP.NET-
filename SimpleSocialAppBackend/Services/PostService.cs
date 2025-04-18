@@ -65,7 +65,7 @@ namespace SimpleSocialAppBackend.Services
             return clonedPosts.Where(p => p.ParentId == null).ToList();
         }
 
-        public PostDTO? Delete(Guid postId)
+        public List<PostDTO> Delete(Guid postId)
         {
             var postToDelete = _posts.FirstOrDefault(p => p.Id == postId);
             if (postToDelete != null)
@@ -73,9 +73,11 @@ namespace SimpleSocialAppBackend.Services
                 DeleteRepliesRecursive(postToDelete);
                 _posts.Remove(postToDelete);
                 SaveToFile();
+            } else {
+                throw new Exception("Post not found.");
             }
 
-            return postToDelete;
+            return GetAllNested();
         }
 
         private void DeleteRepliesRecursive(PostDTO post)

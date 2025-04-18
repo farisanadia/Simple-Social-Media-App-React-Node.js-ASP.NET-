@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import PostComponent from "./PostComponent";
+import CreatePost from "./CreatePost";
 
 const HomePage = ({user}) => {
   const [posts, setPosts] = useState([]);
@@ -15,14 +16,15 @@ const HomePage = ({user}) => {
       })
   }, [])
 
+
   return (
-    <div>
-      <h2>Posts</h2>
+    <div style={{ width: "100%" }}>
+      <CreatePost setPosts={setPosts} />
       {posts ? 
       (
         <div>
         {posts.map((post) => (
-          <PostComponent key={post.id} post={post} user={user}/>
+          <PostComponent key={post.id} post={post} user={user} setPosts={setPosts} />
         ))}
         </div>
       ) : (

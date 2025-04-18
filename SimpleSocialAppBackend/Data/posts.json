@@ -1,120 +1,24 @@
 [
   {
-    "Id": "6eeb75d7-aa8b-4305-be56-3b30c11b3880",
-    "Author": "farisa",
-    "UserId": "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50",
-    "Content": "hi my name is farisa",
-    "Timestamp": "2025-04-17T16:28:26",
-    "Likes": [
-      "02c8ba2e-ecc1-4c40-b9de-aec44549ae74",
-      "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50"
-    ],
-    "ParentId": null,
-    "Replies": [
-      {
-        "Id": "49402f71-d8f7-4dc7-a135-34d5bad14739",
-        "Author": "kingfarisa",
-        "UserId": "02c8ba2e-ecc1-4c40-b9de-aec44549ae74",
-        "Content": "just farisa..? im King Farisa noob",
-        "Timestamp": "2025-04-17T17:20:29.13Z",
-        "Likes": [],
-        "ParentId": "6eeb75d7-aa8b-4305-be56-3b30c11b3880",
-        "Replies": [
-          {
-            "Id": "39c5de48-56b3-4fb4-bd70-f7753948f942",
-            "Author": "farisa",
-            "UserId": "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50",
-            "Content": "bruh u aint allat fatty",
-            "Timestamp": "2025-04-17T17:20:47.422Z",
-            "Likes": [],
-            "ParentId": "49402f71-d8f7-4dc7-a135-34d5bad14739",
-            "Replies": []
-          }
-        ]
-      }
-    ]
-  },
-  {
     "Id": "127bcea4-69d1-4740-8153-e3e26c5004bb",
     "Author": "kingfarisa",
     "UserId": "02c8ba2e-ecc1-4c40-b9de-aec44549ae74",
     "Content": "hi!",
     "Timestamp": "2025-04-17T17:20:17",
-    "Likes": [],
-    "ParentId": null,
-    "Replies": []
-  },
-  {
-    "Id": "49402f71-d8f7-4dc7-a135-34d5bad14739",
-    "Author": "kingfarisa",
-    "UserId": "02c8ba2e-ecc1-4c40-b9de-aec44549ae74",
-    "Content": "just farisa..? im King Farisa noob",
-    "Timestamp": "2025-04-17T17:20:29.13Z",
-    "Likes": [],
-    "ParentId": "6eeb75d7-aa8b-4305-be56-3b30c11b3880",
-    "Replies": [
-      {
-        "Id": "39c5de48-56b3-4fb4-bd70-f7753948f942",
-        "Author": "farisa",
-        "UserId": "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50",
-        "Content": "bruh u aint allat fatty",
-        "Timestamp": "2025-04-17T17:20:47.422Z",
-        "Likes": [],
-        "ParentId": "49402f71-d8f7-4dc7-a135-34d5bad14739",
-        "Replies": []
-      }
-    ]
-  },
-  {
-    "Id": "39c5de48-56b3-4fb4-bd70-f7753948f942",
-    "Author": "farisa",
-    "UserId": "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50",
-    "Content": "bruh u aint allat fatty",
-    "Timestamp": "2025-04-17T17:20:47.422Z",
-    "Likes": [],
-    "ParentId": "49402f71-d8f7-4dc7-a135-34d5bad14739",
-    "Replies": []
-  },
-  {
-    "Id": "814ffc7a-f74e-4b02-bec5-218aec51ee0b",
-    "Author": "farisa",
-    "UserId": "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50",
-    "Content": "TEST",
-    "Timestamp": "2025-04-18T13:12:32",
-    "Likes": [],
-    "ParentId": null,
-    "Replies": []
-  },
-  {
-    "Id": "9b9b1c33-af53-47b4-ae94-4d2762fb1242",
-    "Author": "farisa",
-    "UserId": "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50",
-    "Content": "SSS",
-    "Timestamp": "2025-04-18T13:12:36.211Z",
     "Likes": [
       "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50"
     ],
-    "ParentId": "39c5de48-56b3-4fb4-bd70-f7753948f942",
+    "ParentId": null,
     "Replies": []
   },
   {
-    "Id": "280955f9-ea7a-4d48-9a1a-1ac44d0023eb",
+    "Id": "f71a5aa5-b414-4bfb-ae57-ae6da10dc7fa",
     "Author": "farisa",
     "UserId": "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50",
-    "Content": "ASDASD",
-    "Timestamp": "2025-04-18T13:12:43.786Z",
+    "Content": "wassup",
+    "Timestamp": "2025-04-18T15:32:03.218Z",
     "Likes": [],
-    "ParentId": "6eeb75d7-aa8b-4305-be56-3b30c11b3880",
-    "Replies": []
-  },
-  {
-    "Id": "815c99a1-92d5-4b6a-9dc9-824e6eaee62e",
-    "Author": "farisa",
-    "UserId": "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50",
-    "Content": "AS",
-    "Timestamp": "2025-04-18T13:12:49.719Z",
-    "Likes": [],
-    "ParentId": "6eeb75d7-aa8b-4305-be56-3b30c11b3880",
+    "ParentId": "127bcea4-69d1-4740-8153-e3e26c5004bb",
     "Replies": []
   }
 ]

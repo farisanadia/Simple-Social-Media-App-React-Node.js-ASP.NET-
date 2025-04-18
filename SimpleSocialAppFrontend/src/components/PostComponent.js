@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
+import { FaRegUserCircle } from "react-icons/fa";
+import { FaHeart } from 'react-icons/fa';
+import { FaReply } from "react-icons/fa6";
+import { MdOutlineModeEdit } from "react-icons/md";
+import { MdDeleteOutline } from "react-icons/md";
+import { toast } from 'react-toastify'; 
 
-const PostComponent = ({ post, user, level = 0 }) => {
+const PostComponent = ({ post, user, level = 0, setPosts}) => {
   const [newContent, setNewContent] = useState(post.content);
   const [isEditing, setIsEditing] = useState(false);
   const [newComment, setNewComment] = useState("");
@@ -9,10 +15,16 @@ const PostComponent = ({ post, user, level = 0 }) => {
 
   const handleEditToggle = () => {
     setIsEditing(!isEditing);
+    if (isEditing) {
+      setIsCommenting(false);
+    }
   };
 
   const handleCommentToggle = () => {
     setIsCommenting(!isCommenting);
+    if (isCommenting) {
+      setIsEditing(false);
+    }
   };
 
   const handleEditSubmit = (e) => {
@@ -29,11 +41,16 @@ const PostComponent = ({ post, user, level = 0 }) => {
         timestamp: timestamp
       })
     })
-    .then(res => res.json())
-    .then(data => {
-      console.log("Post updated:", data);
-      setIsEditing(false);
-      window.location.reload();
+    .then(async (res) => {
+      if (res.ok) {
+        const data = await res.json();
+        post.timestamp = data.timestamp;
+        post.content = data.content;
+        setIsEditing(false);
+        toast.success("Post edited successfully.")
+      } else {
+        toast.error(err.message || "An unexpected error occured.")
+      }
     })
     .catch(err => console.error("Error:", err));
   };
@@ -57,12 +74,16 @@ const PostComponent = ({ post, user, level = 0 }) => {
         parentId: post.id
       })
     })
-    .then(res => res.json())
-    .then(data => {
-      console.log("Comment Created:", data);
-      setNewComment("");
-      setIsCommenting(false);
-      window.location.reload();
+    .then(async (res) => {
+      if (res.ok) {
+        const data = await res.json();
+        setPosts(data);
+        setNewComment("");
+        setIsCommenting(false);
+        toast.success("Comment uploaded succesfully.")
+      } else {
+       toast.error(err.message || "An unexpected error occured.")
+      }
     })
     .catch(err => console.error("Error:", err));
   };
@@ -103,69 +124,138 @@ const PostComponent = ({ post, user, level = 0 }) => {
         id: post.id
       })
     })
-    .then(() => {
-      console.log("Post deleted");
-      setNewContent("");
-      setIsEditing(false);
-      window.location.reload();
+    .then(async (res) => {
+      if (res.ok) {
+        const data = await res.json();
+        setPosts(data);
+        setNewContent("");
+        setIsEditing(false);
+      } else {
+        toast.error(err.message || "An unexpected error occured.")
+      }
     })
     .catch(err => console.error("Error:", err));
   };
 
   return (
-    <div style={{ marginLeft: `${level * 20}px`, borderLeft: '1px solid #ccc', paddingLeft: '10px', marginTop: '10px' }}>
+    <div style={{ marginLeft: level == 0 ? "0px" : "40px", marginTop: '10px', color: "#00408C" }}>
       {isEditing ? (
         <form onSubmit={handleEditSubmit}>
-          <textarea
-            value={newContent}
-            onChange={(e) => setNewContent(e.target.value)}
-            rows={3}
-          />
-          <div>
-            <button type="submit">Save</button>
-            <button type="button" onClick={handleEditToggle}>Cancel</button>
+          <div style={{ display: "flex", gap: "0.5rem", marginBottom: "0.5rem" }}>
+            <FaRegUserCircle style={{ fontSize: "2rem" }}/>
+            <textarea
+              className="post-textarea" 
+              value={newContent}
+              onChange={(e) => setNewContent(e.target.value)}
+              rows={3}
+            />
+          </div>
+          <div className="align-right" style={{ gap: "0.5rem" }}>
+            <button className="submit-post" type="submit">Save</button>
+            <button className="cancel-post" type="button" onClick={handleEditToggle}>Cancel</button>
           </div>
         </form>
       ) : (
         <>
-          <p><strong>{post.author}</strong>: {post.content}</p>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "-0.5rem" }}>
+            <FaRegUserCircle style={{ fontSize: "2rem" }}/>
+            <p><strong>{post.author}</strong>: {post.content}</p>
+          </div>
           <p><small>{new Date(post.timestamp).toLocaleString()}</small></p>
-          <p>{post.likes?.length || 0} {post.likes?.length === 1 ? "like" : "likes"}</p>
-
-          {user.id === post.userId && (
-            <div>
-              <button onClick={handleEditToggle}>Edit</button>
-              <button onClick={handleDelete}>Delete</button>
-            </div>
-          )}
-
-          {isCommenting ? (
-            <form onSubmit={handleCommentSubmit}>
-              <textarea
-                value={newComment}
-                onChange={(e) => setNewComment(e.target.value)}
-                rows={2}
-              />
-              <div>
-                <button type="submit">Send</button>
-                <button type="button" onClick={handleCommentToggle}>Cancel</button>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "0.5rem" }}>
+            {/* Left-aligned: like and comment */}
+            <div style={{ display: "flex", alignItems: "center", gap: "0.8rem" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.1rem" }}>
+                <button
+                  onClick={handleSubmitLike}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    padding: 0,
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <FaHeart
+                    className={ post.likes?.includes(user.id) ? "liked" : "post-buttons"}
+                  />
+                </button>
+                <span style={{ fontSize: "1rem" }}>{post.likes?.length || 0}</span>
               </div>
-            </form>
-          ) : (
-            <div>
-              <button onClick={handleCommentToggle}>Reply</button>
-              <button onClick={handleSubmitLike}>
-                {post.likes?.includes(user.id) ? "Dislike" : "Like"}
+
+              <button
+                onClick={handleCommentToggle}
+                style={{
+                  background: "none",
+                  border: "none",
+                  padding: 0,
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <FaReply className="post-buttons" />
               </button>
             </div>
-          )}
+
+            {/* Right-aligned: edit and delete */}
+            {user.id === post.userId && (
+              <div style={{ display: "flex", gap: "0.3rem" }}>
+                <button 
+                  onClick={handleEditToggle}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    padding: 0,
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                  }}>
+                  <MdOutlineModeEdit className="post-buttons" style={{ fontSize: "1.5rem" }}/>
+                </button>
+                <button 
+                  onClick={handleDelete}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    padding: 0,
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                  }}>
+                  <MdDeleteOutline className="post-buttons" style={{ fontSize: "1.5rem" }}/>
+                </button>
+              </div>
+            )}
+          </div>
+            {isCommenting ? (
+              <form onSubmit={handleCommentSubmit}>
+                <div style={{ display: "flex", gap: "0.5rem", marginBottom: "0.5rem", marginTop: "0.5rem" }}>
+                  <FaRegUserCircle style={{ fontSize: "2rem" }}/>
+                  <textarea
+                    className="post-textarea"
+                    placeholder="Send a reply." 
+                    value={newComment}
+                    onChange={(e) => setNewComment(e.target.value)}
+                    rows={3}
+                  />
+                </div>
+                <div className="align-right" style={{ gap: "0.5rem" }}>
+                  <button className="submit-post" type="submit">Send</button>
+                  <button className="cancel-post" type="button" onClick={handleCommentToggle}>Cancel</button>
+                </div>
+              </form>
+            ) : (
+              <></>
+            )}
         </>
       )}
 
       {Array.isArray(post.replies) && post.replies.length > 0 && (
-        <div className="replies">
+        <div className="replies" style={{ borderLeft: '1px solid #ccc' }}>
           {post.replies.map((reply) => (
-            <PostComponent key={reply.id} post={reply} user={user} level={level + 1} />
+            <PostComponent key={reply.id} post={reply} user={user} level={level + 1} setPosts={setPosts} />
           ))}
         </div>
       )}

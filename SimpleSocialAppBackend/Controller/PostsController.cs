@@ -27,8 +27,8 @@ namespace SimpleSocialAppBackend.Controllers
           Console.Write("uploading post");
           try
           {
-            var createdPost = _postService.Create(post);
-            return Ok(createdPost);
+            var updatedPosts = _postService.Create(post);
+            return Ok(updatedPosts);
           }
           catch (Exception e)
           {
@@ -49,15 +49,22 @@ namespace SimpleSocialAppBackend.Controllers
         public ActionResult<PostDTO> updatePost([FromBody] UpdatePostDTO updatedPost)
         {
           Console.Write("updating post");
-          Console.Write(updatedPost.Id);
           var existingPost = _postService.GetById(updatedPost.Id);
+          
           if (existingPost == null)
           {
             return NotFound(new { message = "Post not found." });
           }
+          
           existingPost.Content = updatedPost.Content;
           existingPost.Timestamp = updatedPost.Timestamp;
-          _postService.Update(existingPost);
+          
+          try {
+            _postService.Update(existingPost);
+          } catch (Exception e) 
+          {
+            return BadRequest(new { message = e.Message });
+          }
           return Ok(existingPost);
         }
 
@@ -66,12 +73,18 @@ namespace SimpleSocialAppBackend.Controllers
         {
           Console.Write("deleting post");
           Console.Write(request.Id);
-          var postToDelete = _postService.Delete(request.Id);
-          if (postToDelete == null)
+          try {
+            var response = _postService.Delete(request.Id);
+            if (response == null)
+            {
+              return NotFound(new { message = "Post not found." });
+            }
+            return Ok(response);
+          } catch (Exception e)
           {
-            return NotFound(new { message = "Post not found." });
+            return BadRequest(new { message = e.Message });
           }
-          return NoContent();
+
         }
 
         [HttpPost("likePost")]

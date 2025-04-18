@@ -14,6 +14,7 @@ cd into backend: `dotnet run`
 
 - [x] change posts to also contain userid so i can find them based on user id ==> change finduserposts to use userid instead of username
 - [x] treat comment as post object, but somehow indicate that it is a post. this allows me to edit and delete my comments, as well as reply to comments.
+- [ ] error handling for post related functions in backend and frontend
 
 ### Main Functionality:
 
@@ -34,8 +35,8 @@ cd into backend: `dotnet run`
 - [x] thumbs up/thumbs down
 
 #### UI:
-- [ ] login/create account ui
-- [ ] post component ui
-- [ ] post creation ui
-- [ ] homepage ui
+- [x] login/create account ui
+- [x] post component ui
+- [x] post creation ui
+- [x] homepage ui
 - [ ] profile ui

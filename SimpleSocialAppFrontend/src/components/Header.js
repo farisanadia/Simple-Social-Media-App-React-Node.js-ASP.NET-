@@ -1,11 +1,9 @@
 // Header.jsx
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FaRegUserCircle } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa";
 import { FaAngleUp } from "react-icons/fa";
-
-
 
 export default function Header({ user, setUser }) {
   const navigate = useNavigate();
@@ -54,7 +52,7 @@ export default function Header({ user, setUser }) {
                 cursor: "pointer",
                 padding: "0.5rem",
                 color: "#fff",
-                fontSize: "1.25rem",
+                fontSize: "1rem",
                 display: "flex",
                 alignItems: "center",
                 gap: "0.4rem",
@@ -63,7 +61,7 @@ export default function Header({ user, setUser }) {
               }}
             >
               <span style={{ fontWeight: "400" }}>Hi, {user.username}</span>
-              <FaRegUserCircle style={{ padding: "0rem 0rem 0rem 0.5rem", fontSize: "1.5rem" }}/>
+              <FaRegUserCircle style={{ padding: "0rem 0rem 0rem 0.5rem", fontSize: "1.25rem" }}/>
               {dropdownOpen ?  <FaAngleUp /> : <FaAngleDown />}
             </div>
 
