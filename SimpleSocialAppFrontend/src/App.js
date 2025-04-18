@@ -42,7 +42,7 @@ function App() {
 
   return (
     <main>
-      {user.username ? (
+      {user && user.username ? (
         <div>
           <Link to="/profile">{user.username}</Link>
           <CreatePost />

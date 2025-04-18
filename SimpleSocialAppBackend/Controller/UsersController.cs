@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using SimpleSocialAppBackend.Models;
+using SimpleSocialAppBackend.Models.User;
 using SimpleSocialAppBackend.Services;
 
 namespace SimpleSocialAppBackend.Controllers
@@ -15,21 +15,16 @@ namespace SimpleSocialAppBackend.Controllers
             _userService = userService;
         }
 
-        public class DeleteUserRequest
-        {
-            public Guid Id { get; set; }
-        }
-
         // IActionResult appropriate when multiple ActionResult types are 
         // possible in an action.
         [HttpPost("createUser")]
-        public IActionResult CreateUser([FromBody] RegisterUser user)
+        public ActionResult<UserRequestDTO> CreateUser([FromBody] UserCreationDTO user)
         {
             Console.Write("creating user");
             try
             {
                 var hashedPassword = BCrypt.Net.BCrypt.HashPassword(user.Password);
-                var newUser = new User
+                var newUser = new UserProfileDTO
                 {
                     Username = user.Username,
                     PasswordHash = hashedPassword
@@ -48,7 +43,7 @@ namespace SimpleSocialAppBackend.Controllers
         }
 
         [HttpPost("loginUser")]
-        public IActionResult LoginUser([FromBody] RegisterUser user)
+        public ActionResult<UserRequestDTO> LoginUser([FromBody] UserCreationDTO user)
         {
             Console.Write("logging in");
             try {
@@ -73,12 +68,16 @@ namespace SimpleSocialAppBackend.Controllers
         }
 
         [HttpDelete("deleteUser")]
-        public IActionResult DeleteUser([FromBody] DeleteUserRequest request)
+        public IActionResult DeleteUser([FromBody] UserDeleteDTO request)
         {
           Console.Write("deleting user");
           Console.Write(request.Id);
-          _userService.Delete(request.Id);
-          return NoContent();
+          var deletedUser = _userService.Delete(request.Id);
+          if (deletedUser == null)
+          {
+            return NotFound(new { message = "User not found."  });
+          }
+          return NoContent(); // http 204
         }
 
     }

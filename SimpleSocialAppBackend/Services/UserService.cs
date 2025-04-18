@@ -1,4 +1,4 @@
-using SimpleSocialAppBackend.Models;
+using SimpleSocialAppBackend.Models.User;
 using System.Text.Json;
 
 namespace SimpleSocialAppBackend.Services
@@ -6,7 +6,7 @@ namespace SimpleSocialAppBackend.Services
     public class UserService
     {
         private readonly string filePath = "Data/users.json";
-        private List<User> users;
+        private List<UserProfileDTO> users;
         private readonly PostService _postService;
 
         public UserService(PostService postService)
@@ -15,15 +15,15 @@ namespace SimpleSocialAppBackend.Services
             if (File.Exists(filePath))
             {
                 string json = File.ReadAllText(filePath);
-                users = JsonSerializer.Deserialize<List<User>>(json) ?? new List<User>();
+                users = JsonSerializer.Deserialize<List<UserProfileDTO>>(json) ?? new List<UserProfileDTO>();
             }
             else
             {
-                users = new List<User>();
+                users = new List<UserProfileDTO>();
             }
         }
 
-        public User Create(User user)
+        public UserProfileDTO Create(UserProfileDTO user)
         {
             if (users.Any(u => u.Username == user.Username))
                 throw new Exception("Username already taken.");
@@ -39,7 +39,7 @@ namespace SimpleSocialAppBackend.Services
             File.WriteAllText(filePath, json);
         }
 
-        public User? Delete(Guid id)
+        public UserProfileDTO? Delete(Guid id)
         {   
             Console.Write(id);
             var userToDelete = users.FirstOrDefault(u => id.Equals(u.Id));
@@ -56,7 +56,7 @@ namespace SimpleSocialAppBackend.Services
             return userToDelete;
         }
 
-        public User? GetByUsername(string username)
+        public UserProfileDTO? GetByUsername(string username)
         {
             return users.FirstOrDefault(u => u.Username == username);
        }
