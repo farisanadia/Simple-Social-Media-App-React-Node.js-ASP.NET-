@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using SimpleSocialAppBackend.Models;
+using SimpleSocialAppBackend.Models.Post;
 using SimpleSocialAppBackend.Services;
 
 namespace SimpleSocialAppBackend.Controllers
@@ -15,26 +15,14 @@ namespace SimpleSocialAppBackend.Controllers
             _postService = postService;
         }
 
-        public class DeletePostRequest
-        {
-          public Guid Id { get; set; }
-        }
-
-        public class LikeRequest
-        {
-          public Guid PostId { get; set; }
-          public Guid UserId { get; set; }
-        }
-
-
         [HttpGet]
-        public ActionResult<List<Post>> GetAll()
+        public ActionResult<List<PostDTO>> GetAll()
         {
             return _postService.GetAll();
         }
 
         [HttpPost("createPost")]
-        public IActionResult createPost([FromBody] Post post)
+        public ActionResult<PostDTO> createPost([FromBody] PostDTO post)
         {
           Console.Write("uploading post");
           try
@@ -50,7 +38,7 @@ namespace SimpleSocialAppBackend.Controllers
 
 
         [HttpGet("getUserPosts")]
-        public ActionResult<List<Post>> getUserPosts([FromQuery] Guid id)
+        public ActionResult<List<PostDTO>> getUserPosts([FromQuery] Guid id)
         {
           var posts = _postService.GetUserPosts(id);
           return Ok(posts);
@@ -58,7 +46,7 @@ namespace SimpleSocialAppBackend.Controllers
 
 
         [HttpPut("updatePost")]
-        public ActionResult<Post> updatePost([FromBody] UpdatePost updatedPost)
+        public ActionResult<PostDTO> updatePost([FromBody] UpdatePostDTO updatedPost)
         {
           Console.Write("updating post");
           Console.Write(updatedPost.Id);
@@ -74,16 +62,20 @@ namespace SimpleSocialAppBackend.Controllers
         }
 
         [HttpDelete("deletePost")]
-        public IActionResult deletePost([FromBody] DeletePostRequest request)
+        public IActionResult deletePost([FromBody] DeletePostDTO request)
         {
           Console.Write("deleting post");
           Console.Write(request.Id);
-          _postService.Delete(request.Id);
+          var postToDelete = _postService.Delete(request.Id);
+          if (postToDelete == null)
+          {
+            return NotFound(new { message = "Post not found." });
+          }
           return NoContent();
         }
 
         [HttpPost("likePost")]
-        public IActionResult LikePost([FromBody] LikeRequest request)
+        public IActionResult LikePost([FromBody] LikePostDTO request)
         {
             Console.Write("liking post");
             _postService.Like(request.PostId, request.UserId);
@@ -91,7 +83,7 @@ namespace SimpleSocialAppBackend.Controllers
         }
 
         [HttpPost("dislikePost")]
-        public IActionResult DislikePost([FromBody] LikeRequest request)
+        public IActionResult DislikePost([FromBody] LikePostDTO request)
         {
             Console.Write("Disliking post");
             _postService.Dislike(request.PostId, request.UserId);

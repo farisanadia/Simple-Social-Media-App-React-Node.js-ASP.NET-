@@ -74,5 +74,47 @@
     "Likes": [],
     "ParentId": "49402f71-d8f7-4dc7-a135-34d5bad14739",
     "Replies": []
+  },
+  {
+    "Id": "814ffc7a-f74e-4b02-bec5-218aec51ee0b",
+    "Author": "farisa",
+    "UserId": "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50",
+    "Content": "TEST",
+    "Timestamp": "2025-04-18T13:12:32",
+    "Likes": [],
+    "ParentId": null,
+    "Replies": []
+  },
+  {
+    "Id": "9b9b1c33-af53-47b4-ae94-4d2762fb1242",
+    "Author": "farisa",
+    "UserId": "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50",
+    "Content": "SSS",
+    "Timestamp": "2025-04-18T13:12:36.211Z",
+    "Likes": [
+      "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50"
+    ],
+    "ParentId": "39c5de48-56b3-4fb4-bd70-f7753948f942",
+    "Replies": []
+  },
+  {
+    "Id": "280955f9-ea7a-4d48-9a1a-1ac44d0023eb",
+    "Author": "farisa",
+    "UserId": "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50",
+    "Content": "ASDASD",
+    "Timestamp": "2025-04-18T13:12:43.786Z",
+    "Likes": [],
+    "ParentId": "6eeb75d7-aa8b-4305-be56-3b30c11b3880",
+    "Replies": []
+  },
+  {
+    "Id": "815c99a1-92d5-4b6a-9dc9-824e6eaee62e",
+    "Author": "farisa",
+    "UserId": "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50",
+    "Content": "AS",
+    "Timestamp": "2025-04-18T13:12:49.719Z",
+    "Likes": [],
+    "ParentId": "6eeb75d7-aa8b-4305-be56-3b30c11b3880",
+    "Replies": []
   }
 ]

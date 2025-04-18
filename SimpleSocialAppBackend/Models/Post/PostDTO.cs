@@ -1,6 +1,6 @@
-namespace SimpleSocialAppBackend.Models
+namespace SimpleSocialAppBackend.Models.Post
 {
-    public class Post
+    public class PostDTO
     {
         public Guid Id { get; set; }
         public string Author { get; set; } = string.Empty;
@@ -10,6 +10,6 @@ namespace SimpleSocialAppBackend.Models
         public List<Guid> Likes { get; set; } = new List<Guid>();
         // if parentId is null, it is a post. Else it is a comment
         public Guid? ParentId { get; set; }
-        public List<Post> Replies { get; set; } = new List<Post>();
+        public List<PostDTO> Replies { get; set; } = new List<PostDTO>();
     }
 }

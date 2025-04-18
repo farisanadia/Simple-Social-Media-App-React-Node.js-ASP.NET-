@@ -1,4 +1,4 @@
-using SimpleSocialAppBackend.Models;
+using SimpleSocialAppBackend.Models.Post;
 using System.Text.Json;
 
 namespace SimpleSocialAppBackend.Services
@@ -6,7 +6,7 @@ namespace SimpleSocialAppBackend.Services
     public class PostService
     {
         private readonly string _filePath = "Data/posts.json";
-        private List<Post> _posts;
+        private List<PostDTO> _posts;
 
         public PostService()
         {
@@ -14,12 +14,12 @@ namespace SimpleSocialAppBackend.Services
                 File.WriteAllText(_filePath, "[]");
 
             var json = File.ReadAllText(_filePath);
-            _posts = JsonSerializer.Deserialize<List<Post>>(json) ?? new List<Post>();
+            _posts = JsonSerializer.Deserialize<List<PostDTO>>(json) ?? new List<PostDTO>();
         }
 
-        public List<Post> GetAll() => GetAllNested();
+        public List<PostDTO> GetAll() => GetAllNested();
 
-        public List<Post> Create(Post post)
+        public List<PostDTO> Create(PostDTO post)
         {
             if (_posts.Any(p => p.Id == post.Id))
                 throw new Exception("Error creating post, duplicate id submitted");
@@ -33,9 +33,9 @@ namespace SimpleSocialAppBackend.Services
             return GetAllNested();
         }
 
-        private Post ClonePost(Post post)
+        private PostDTO ClonePost(PostDTO post)
         {
-            return new Post
+            return new PostDTO
             {
                 Id = post.Id,
                 Author = post.Author,
@@ -44,11 +44,11 @@ namespace SimpleSocialAppBackend.Services
                 Likes = post.Likes,
                 UserId = post.UserId,
                 ParentId = post.ParentId,
-                Replies = new List<Post>()
+                Replies = new List<PostDTO>()
             };
         }
 
-        private List<Post> GetAllNested()
+        private List<PostDTO> GetAllNested()
         {
             var clonedPosts = _posts.Select(ClonePost).ToList();
             var lookup = clonedPosts.ToLookup(p => p.ParentId);
@@ -65,7 +65,7 @@ namespace SimpleSocialAppBackend.Services
             return clonedPosts.Where(p => p.ParentId == null).ToList();
         }
 
-        public Post? Delete(Guid postId)
+        public PostDTO? Delete(Guid postId)
         {
             var postToDelete = _posts.FirstOrDefault(p => p.Id == postId);
             if (postToDelete != null)
@@ -78,7 +78,7 @@ namespace SimpleSocialAppBackend.Services
             return postToDelete;
         }
 
-        private void DeleteRepliesRecursive(Post post)
+        private void DeleteRepliesRecursive(PostDTO post)
         {
             var replies = _posts.Where(p => p.ParentId == post.Id).ToList();
 
@@ -95,14 +95,14 @@ namespace SimpleSocialAppBackend.Services
             File.WriteAllText(_filePath, json);
         }
 
-        public List<Post> GetUserPosts(Guid userId)
+        public List<PostDTO> GetUserPosts(Guid userId)
         {
             foreach (var post in _posts)
-                post.Replies = new List<Post>();
+                post.Replies = new List<PostDTO>();
 
             var lookup = _posts.ToLookup(p => p.ParentId);
 
-            void PopulateReplies(Post post)
+            void PopulateReplies(PostDTO post)
             {
                 foreach (var reply in lookup[post.Id])
                 {
@@ -127,12 +127,12 @@ namespace SimpleSocialAppBackend.Services
             SaveToFile();
         }
 
-        public Post? GetById(Guid id)
+        public PostDTO? GetById(Guid id)
         {
             return _posts.FirstOrDefault(p => p.Id == id);
         }
 
-        public void Update(Post post)
+        public void Update(PostDTO post)
         {
             var index = _posts.FindIndex(p => p.Id == post.Id);
             if (index != -1)
