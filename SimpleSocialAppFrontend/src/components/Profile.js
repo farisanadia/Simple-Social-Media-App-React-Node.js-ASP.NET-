@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import PostComponent from "./PostComponent";
+import Header from "./Header";
 
 function Profile() {
   const [posts, setPosts] = useState([]);
@@ -36,20 +37,25 @@ function Profile() {
   }, [user]);
 
   return (
-    <div style={{ padding: "2rem" }}>
-    <h2>profile</h2>
-    {posts ? 
-      (
-        <div>
-        {posts.map((post) => (
-          <PostComponent key={post.id} post={post} user={user}/>
-        ))}
-        </div>
+    <>
+      {user && user.username && <Header user={user} setUser={setUser} />}
+      <main>
+        <div style={{ width: "50%", minWidth: "300px" }}>
+        <h2>profile</h2>
+        {posts ? 
+          (
+            <div>
+            {posts.map((post) => (
+              <PostComponent key={post.id} post={post} user={user}/>
+            ))}
+            </div>
 
-      ) : (
-        <h2> no posts </h2>
-    )}
-    </div>
+          ) : (
+            <h2> no posts </h2>
+        )}
+        </div>
+      </main>
+    </>
   )
 }
 export default Profile;

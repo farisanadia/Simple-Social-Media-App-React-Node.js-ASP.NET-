@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Login from "./components/Login";
 import CreateAccount from "./components/CreateAccount";
 import HomePage from "./components/HomePage";
+import Header from "./components/Header";
 import './App.css';
 
 function App() {
@@ -22,36 +23,20 @@ function App() {
     setIsCreatingAccount(!isCreatingAccount);
   }
 
-  const logout = () => {
-    localStorage.clear();
-    setUser({});
-  };
-
-  const deleteAccount = () => {
-    fetch("/api/users/deleteUser", {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: user.id }),
-    })
-      .then(() => {
-        localStorage.clear();
-        setUser({});
-      })
-      .catch((err) => console.error("Error deleting account:", err));
-  };
+ 
 
   return (
+    <>
+    {user && user.username && <Header user={user} setUser={setUser} />}
+    
     <main>
       {user && user.username ? (
-        <div>
-          <Link to="/profile">{user.username}</Link>
+        <div style={{ width: "50%", minWidth: "300px" }}>
           <CreatePost />
           <HomePage user={user}/>
-          <button onClick={deleteAccount}>Delete Account</button>
-          <button onClick={logout}>Log Out</button>
         </div>
       ) : (
-        <div className="acc-component">
+        <div className="login-component">
           <h1 className="safari-title">SAFARI</h1>
           {isCreatingAccount ? (
             <div className="flex-form">
@@ -73,6 +58,7 @@ function App() {
         </div>
       )}
     </main>
+    </>
   );
 }
 

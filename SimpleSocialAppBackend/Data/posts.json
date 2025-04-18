@@ -6,10 +6,33 @@
     "Content": "hi my name is farisa",
     "Timestamp": "2025-04-17T16:28:26",
     "Likes": [
-      "02c8ba2e-ecc1-4c40-b9de-aec44549ae74"
+      "02c8ba2e-ecc1-4c40-b9de-aec44549ae74",
+      "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50"
     ],
     "ParentId": null,
-    "Replies": []
+    "Replies": [
+      {
+        "Id": "49402f71-d8f7-4dc7-a135-34d5bad14739",
+        "Author": "kingfarisa",
+        "UserId": "02c8ba2e-ecc1-4c40-b9de-aec44549ae74",
+        "Content": "just farisa..? im King Farisa noob",
+        "Timestamp": "2025-04-17T17:20:29.13Z",
+        "Likes": [],
+        "ParentId": "6eeb75d7-aa8b-4305-be56-3b30c11b3880",
+        "Replies": [
+          {
+            "Id": "39c5de48-56b3-4fb4-bd70-f7753948f942",
+            "Author": "farisa",
+            "UserId": "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50",
+            "Content": "bruh u aint allat fatty",
+            "Timestamp": "2025-04-17T17:20:47.422Z",
+            "Likes": [],
+            "ParentId": "49402f71-d8f7-4dc7-a135-34d5bad14739",
+            "Replies": []
+          }
+        ]
+      }
+    ]
   },
   {
     "Id": "127bcea4-69d1-4740-8153-e3e26c5004bb",
@@ -29,7 +52,18 @@
     "Timestamp": "2025-04-17T17:20:29.13Z",
     "Likes": [],
     "ParentId": "6eeb75d7-aa8b-4305-be56-3b30c11b3880",
-    "Replies": []
+    "Replies": [
+      {
+        "Id": "39c5de48-56b3-4fb4-bd70-f7753948f942",
+        "Author": "farisa",
+        "UserId": "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50",
+        "Content": "bruh u aint allat fatty",
+        "Timestamp": "2025-04-17T17:20:47.422Z",
+        "Likes": [],
+        "ParentId": "49402f71-d8f7-4dc7-a135-34d5bad14739",
+        "Replies": []
+      }
+    ]
   },
   {
     "Id": "39c5de48-56b3-4fb4-bd70-f7753948f942",

@@ -16,7 +16,7 @@ const HomePage = ({user}) => {
   }, [])
 
   return (
-    <div className="post-printer">
+    <div>
       <h2>Posts</h2>
       {posts ? 
       (

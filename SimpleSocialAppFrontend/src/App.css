@@ -37,7 +37,7 @@
   }
 }
 
-.acc-component {
+.login-component {
   background-color: #E85234;
   color: #F2EEE9;
   border-radius: 8px;
@@ -50,10 +50,11 @@
 }
 
 main {
-  padding: 2rem;
+  padding: 2rem 0rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: auto;
 }
 
 .flex-form {
@@ -115,4 +116,57 @@ main {
   margin: 1rem 0rem 0rem 0rem;
   color: #F2EEE9;
   text-shadow: -2px -2px 0 #00408C, 2px -2px 0 #00408C, -2px 2px 0 #00408C, 2px 2px 0 #00408C;
+}
+
+.safari-header
+{
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 1.75rem;
+  letter-spacing: 0.2cap;
+  margin: 0rem;
+  color: #F2EEE9;
+  text-shadow: -2px -2px 0 #00408C, 2px -2px 0 #00408C, -2px 2px 0 #00408C, 2px 2px 0 #00408C;
+}
+
+header {
+  background-color: #E85234;
+  padding : 0.5rem 1.5rem;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%
+}
+
+.dropdown-button {
+  display: block;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  color: white;
+  font-size: 1rem;
+  width: 100%;
+  padding: 0.3rem 0.75rem;
+}
+
+.dropdown-button:hover {
+  background-color: #96ADD6;
+}
+
+.dropdown {
+  position: absolute;
+  right: 0;
+  margin-top: 0.5rem;
+  margin-right: 2rem;
+  background-color: #00408C;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 999;
 }
