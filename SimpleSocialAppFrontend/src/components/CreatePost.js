@@ -19,7 +19,7 @@ const CreatePost = ({setPosts}) => {
     } else {
       navigate('/');
     }
-  }, []);
+  }, [navigate]);
 
   const createPost = (e) => {
     e.preventDefault();
@@ -48,6 +48,7 @@ const CreatePost = ({setPosts}) => {
           setContents("");
           toast.success("Post uploaded successfully.")
         } else {
+          const err = await res.json();
           toast.error(err.message || "An unexpected error occured.")
         }
       })

@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
-import CreatePost from "./components/CreatePost";
-import { Link } from "react-router-dom";
 import Login from "./components/Login";
 import CreateAccount from "./components/CreateAccount";
 import HomePage from "./components/HomePage";
 import Header from "./components/Header";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
 function App() {
@@ -44,7 +40,7 @@ function App() {
               <CreateAccount setUser={setUser} />
               <div style={{ display: "flex", alignItems:"center", gap: "0.3rem", paddingBottom: "2rem" }}>
                 <p>Already have an account?</p>
-                <a className="toggle-btn" onClick={toggleAccountCreation}>Login.</a>
+                <div className="toggle-btn" onClick={toggleAccountCreation}>Login.</div>
               </div>
             </div>
           ) : (
@@ -52,7 +48,7 @@ function App() {
               <Login setUser={setUser} />
               <div style={{ display: "flex", alignItems:"center", gap: "0.3rem", paddingBottom: "2rem" }}>
                 <p>Don't have an account?</p>
-                <a className="toggle-btn" onClick={toggleAccountCreation}>Sign up.</a>
+                <div className="toggle-btn" onClick={toggleAccountCreation}>Sign up.</div>
               </div>
             </div>
           )}

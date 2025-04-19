@@ -47,3 +47,5 @@ secrets.json
 
 # Other
 .env
+
+.history

@@ -29,7 +29,7 @@ function Login({ setUser }) {
         toast.success("Logged in successfully!")
       } else {
         const err = await res.json();
-        if (res.status == 401) {
+        if (res.status === 401) {
           toast.error("Invalid username or password given.");
         } else {
           toast.error(err.message || "An unexpected error occurred.");

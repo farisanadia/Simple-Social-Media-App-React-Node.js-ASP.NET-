@@ -49,6 +49,7 @@ const PostComponent = ({ post, user, level = 0, setPosts}) => {
         setIsEditing(false);
         toast.success("Post edited successfully.")
       } else {
+        const err = await res.json();
         toast.error(err.message || "An unexpected error occured.")
       }
     })
@@ -82,6 +83,7 @@ const PostComponent = ({ post, user, level = 0, setPosts}) => {
         setIsCommenting(false);
         toast.success("Comment uploaded succesfully.")
       } else {
+        const err = await res.json();
        toast.error(err.message || "An unexpected error occured.")
       }
     })
@@ -131,6 +133,7 @@ const PostComponent = ({ post, user, level = 0, setPosts}) => {
         setNewContent("");
         setIsEditing(false);
       } else {
+        const err = await res.json();
         toast.error(err.message || "An unexpected error occured.")
       }
     })
@@ -138,7 +141,7 @@ const PostComponent = ({ post, user, level = 0, setPosts}) => {
   };
 
   return (
-    <div style={{ marginLeft: level == 0 ? "0px" : "40px", marginTop: '10px', color: "#00408C" }}>
+    <div style={{ marginLeft: level === 0 ? "0px" : "40px", marginTop: '10px', color: "#00408C" }}>
       {isEditing ? (
         <form onSubmit={handleEditSubmit}>
           <div style={{ display: "flex", gap: "0.5rem", marginBottom: "0.5rem" }}>

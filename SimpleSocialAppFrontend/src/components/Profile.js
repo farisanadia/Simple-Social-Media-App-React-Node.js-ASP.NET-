@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import PostComponent from "./PostComponent";
 import Header from "./Header";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
   const [posts, setPosts] = useState([]);
   const [user, setUser] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     const savedUser = localStorage.getItem("user");
@@ -15,8 +17,7 @@ function Profile() {
     } else {
       navigate('/');
     }
-    
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     if (user && user.id) {
