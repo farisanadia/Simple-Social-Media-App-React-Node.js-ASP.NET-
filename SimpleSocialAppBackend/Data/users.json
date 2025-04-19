@@ -10,8 +10,13 @@
     "PasswordHash": "$2a$11$.GLvnk5RWj0JMXLou2gl1uJeqVotkfJ6lUM.ZPTPxgIOg7yXdVxma"
   },
   {
-    "Id": "4574fa16-1a59-4a43-b6da-0249595f3283",
+    "Id": "1912071f-b396-4d57-8501-0553082ca461",
     "Username": "test",
-    "PasswordHash": "$2a$11$iDgSL8Wt71t.eY3N0kJuI.ZdXSLg/w1qrM20GJdW8NBDfvxDSPq6u"
+    "PasswordHash": "$2a$11$w2putU.PyzjzFYF4dKkx6ugMVoWDJeEtEhWUCbUGBg0LLXooy9gaG"
+  },
+  {
+    "Id": "5126561c-637e-4f78-9c1f-bfef1492f0fd",
+    "Username": "concernedcitizen",
+    "PasswordHash": "$2a$11$4lcd.tfcogBUUzpjax9I0.usf/Yo.OAs108FFi2I2uR1jhSCHpSR6"
   }
 ]

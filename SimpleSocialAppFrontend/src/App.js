@@ -29,7 +29,7 @@ function App() {
 
     <main>
       {user && user.username ? (
-        <div style={{ width: "30%", minWidth: "500px", display: "flex", flexDirection:"column", alignItems: "center", justifyContent: "center" }}>
+        <div style={{ width: "40%", minWidth: "500px", display: "flex", flexDirection:"column", alignItems: "center", justifyContent: "center" }}>
           <HomePage user={user}/>
         </div>
       ) : (

@@ -8,6 +8,14 @@ cd into frontend: `npm start`
 
 cd into backend: `dotnet run`
 
+## CURRENT PROGRESS:
+- signup:
+![image info](./images/Signup.png)
+- login:
+![image info](./images/Login.png)
+- main:
+![image info](./images/main.png)
+
 ## TODO:
 
 ### To Fix:
@@ -23,6 +31,9 @@ cd into backend: `dotnet run`
 - [x] log in
 - [x] log out
 - [x] delete account. when user deletes account, all posts posted by user should also be deleted.
+- [ ] authentication
+- [ ] add profile photo
+- [ ] user verification with email etc.
 
 #### Posts:
 - [x] create post
@@ -33,6 +44,12 @@ cd into backend: `dotnet run`
 - [x] comment on other peoples posts
 - [x] delete comment
 - [x] thumbs up/thumbs down
+- [ ] add photos/videos to posts
+
+#### Private messages:
+- [ ] create chatroom between two or more users
+- [ ] send messages to each other
+- [ ] reply to each others messages
 
 #### UI:
 - [x] login/create account ui
@@ -40,3 +57,4 @@ cd into backend: `dotnet run`
 - [x] post creation ui
 - [x] homepage ui
 - [ ] profile ui
+- [ ] chatroom ui

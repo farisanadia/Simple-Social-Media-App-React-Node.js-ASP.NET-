@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PostComponent from "./PostComponent";
 import CreatePost from "./CreatePost";
+import { toast } from 'react-toastify'; 
 
 const HomePage = ({user}) => {
   const [posts, setPosts] = useState([]);
@@ -12,7 +13,7 @@ const HomePage = ({user}) => {
         setPosts(data);
       })
       .catch((err) => {
-        console.log(err.message);
+        toast.error("Error retrieving posts: " + err.message);
       })
   }, [])
 
@@ -20,7 +21,7 @@ const HomePage = ({user}) => {
   return (
     <div style={{ width: "100%" }}>
       <CreatePost setPosts={setPosts} />
-      {posts ? 
+      {posts.length > 0 ? 
       (
         <div>
         {posts.map((post) => (
@@ -28,7 +29,7 @@ const HomePage = ({user}) => {
         ))}
         </div>
       ) : (
-        <h2> no posts </h2>
+        <h2 style={{ color: "#00408C" }}> No recent activity :( </h2>
       )}
     </div>
   )

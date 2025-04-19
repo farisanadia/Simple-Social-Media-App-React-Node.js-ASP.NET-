@@ -40,9 +40,9 @@ function Profile() {
   return (
     <>
       {user && user.username && <Header user={user} setUser={setUser} />}
-      <main>
-        <div style={{ width: "50%", minWidth: "300px" }}>
-        <h2>profile</h2>
+      <main style={{ padding: "2rem 0rem", display: "flex", alignItems: "center", justifyContent: "center", minWidth: "auto" }}>
+        <div style={{ width: "40%", minWidth: "500px" }}>
+        <h2 style={{ color: "#00408C" }}>Your Posts:</h2>
         {posts ? 
           (
             <div>

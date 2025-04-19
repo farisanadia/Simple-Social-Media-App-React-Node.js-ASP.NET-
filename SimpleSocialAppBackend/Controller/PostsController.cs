@@ -18,6 +18,15 @@ namespace SimpleSocialAppBackend.Controllers
         [HttpGet]
         public ActionResult<List<PostDTO>> GetAll()
         {
+          Console.Write("getting all posts");
+          try {
+            var posts = _postService.GetAll();
+            return Ok(posts);
+          } catch (Exception e)
+          {
+            return BadRequest(new { message = e.Message });
+          }
+
             return _postService.GetAll();
         }
 

@@ -62,8 +62,31 @@ namespace SimpleSocialAppBackend.Services
                 }
             }
 
-            return clonedPosts.Where(p => p.ParentId == null).ToList();
+            // Sort replies recursively
+            foreach (var post in clonedPosts)
+            {
+                SortRepliesDescending(post);
+            }
+
+            return clonedPosts
+                .Where(p => p.ParentId == null)
+                .OrderByDescending(p => p.Timestamp) // Sort top-level posts as well
+                .ToList();
         }
+
+        private void SortRepliesDescending(PostDTO post)
+        {
+            post.Replies = post.Replies
+                .OrderByDescending(r => r.Timestamp)
+                .ToList();
+
+            foreach (var reply in post.Replies)
+            {
+                SortRepliesDescending(reply);
+            }
+        }
+
+
 
         public List<PostDTO> Delete(Guid postId)
         {

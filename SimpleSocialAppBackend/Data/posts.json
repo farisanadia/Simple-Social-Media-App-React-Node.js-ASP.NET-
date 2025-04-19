@@ -1,80 +1,111 @@
 [
   {
-    "Id": "127bcea4-69d1-4740-8153-e3e26c5004bb",
-    "Author": "kingfarisa",
-    "UserId": "02c8ba2e-ecc1-4c40-b9de-aec44549ae74",
-    "Content": "hi!",
-    "Timestamp": "2025-04-17T17:20:17",
+    "Id": "67119ffb-1d08-45f0-bef8-95655b44c029",
+    "Author": "farisa",
+    "UserId": "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50",
+    "Content": "Hi guys, Im farisa! it\u0027s nice to meet you all :)",
+    "Timestamp": "2025-04-19T06:48:36",
+    "Likes": [
+      "1912071f-b396-4d57-8501-0553082ca461",
+      "5126561c-637e-4f78-9c1f-bfef1492f0fd"
+    ],
+    "ParentId": null,
+    "Replies": []
+  },
+  {
+    "Id": "16d2ebd8-7708-4fc0-a89f-27533c399da0",
+    "Author": "test",
+    "UserId": "1912071f-b396-4d57-8501-0553082ca461",
+    "Content": "Hey farisa, it\u0027s nice to meet you! how was your day? ",
+    "Timestamp": "2025-04-19T06:49:01.949Z",
     "Likes": [
       "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50"
     ],
+    "ParentId": "67119ffb-1d08-45f0-bef8-95655b44c029",
+    "Replies": []
+  },
+  {
+    "Id": "5aaa276e-3de2-47bd-a1c1-a586a53c92ee",
+    "Author": "test",
+    "UserId": "1912071f-b396-4d57-8501-0553082ca461",
+    "Content": "was looking at my phone while on a walk with my dog and got hit by a car ^^ life is so exciting",
+    "Timestamp": "2025-04-19T06:49:43",
+    "Likes": [],
     "ParentId": null,
     "Replies": []
   },
   {
-    "Id": "f71a5aa5-b414-4bfb-ae57-ae6da10dc7fa",
+    "Id": "474ce4a8-d92c-470a-8383-9f61a9bee6ee",
+    "Author": "concernedcitizen",
+    "UserId": "5126561c-637e-4f78-9c1f-bfef1492f0fd",
+    "Content": "umm wat.???  r u ok ",
+    "Timestamp": "2025-04-19T06:50:04.582Z",
+    "Likes": [
+      "1912071f-b396-4d57-8501-0553082ca461"
+    ],
+    "ParentId": "5aaa276e-3de2-47bd-a1c1-a586a53c92ee",
+    "Replies": []
+  },
+  {
+    "Id": "2d43c828-a8cc-4253-8a88-6afb8705046c",
+    "Author": "concernedcitizen",
+    "UserId": "5126561c-637e-4f78-9c1f-bfef1492f0fd",
+    "Content": "heyyy whats up gworl",
+    "Timestamp": "2025-04-19T06:50:16.17Z",
+    "Likes": [],
+    "ParentId": "67119ffb-1d08-45f0-bef8-95655b44c029",
+    "Replies": []
+  },
+  {
+    "Id": "c1cae68a-691f-4596-a929-db6c6744d1fe",
     "Author": "farisa",
     "UserId": "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50",
-    "Content": "wassup",
-    "Timestamp": "2025-04-18T15:32:03.218Z",
-    "Likes": [
-      "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50"
-    ],
-    "ParentId": "127bcea4-69d1-4740-8153-e3e26c5004bb",
+    "Content": "its been good! im sure yours could be better tho! atb",
+    "Timestamp": "2025-04-19T06:50:42.723Z",
+    "Likes": [],
+    "ParentId": "16d2ebd8-7708-4fc0-a89f-27533c399da0",
     "Replies": []
   },
   {
-    "Id": "522b603f-ae39-41a5-b52f-b6183019b930",
+    "Id": "688ee80e-59c3-44a7-a4a1-8ecb229dd046",
     "Author": "farisa",
     "UserId": "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50",
-    "Content": "hi guys its me farisa",
-    "Timestamp": "2025-04-19T06:21:18",
+    "Content": "nth much hbuu",
+    "Timestamp": "2025-04-19T06:50:53.342Z",
+    "Likes": [],
+    "ParentId": "2d43c828-a8cc-4253-8a88-6afb8705046c",
+    "Replies": []
+  },
+  {
+    "Id": "2c1afe60-067d-4126-8fb0-aa65396a36f4",
+    "Author": "farisa",
+    "UserId": "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50",
+    "Content": "feeling schizo talking to myself across 3 of my own accounts :\u003E",
+    "Timestamp": "2025-04-19T06:51:09",
     "Likes": [
-      "4574fa16-1a59-4a43-b6da-0249595f3283"
+      "1912071f-b396-4d57-8501-0553082ca461"
     ],
     "ParentId": null,
     "Replies": []
   },
   {
-    "Id": "e49b2891-b0c9-40f8-bb94-f747220899e5",
+    "Id": "4e2c2807-0dfe-48a3-9b5e-51c33e6aba85",
     "Author": "test",
-    "UserId": "4574fa16-1a59-4a43-b6da-0249595f3283",
-    "Content": "hi farisa im test \u003E\u003C",
-    "Timestamp": "2025-04-19T06:21:44.89Z",
+    "UserId": "1912071f-b396-4d57-8501-0553082ca461",
+    "Content": "im good chica thanks for ur concern",
+    "Timestamp": "2025-04-19T06:51:31.947Z",
     "Likes": [],
-    "ParentId": "522b603f-ae39-41a5-b52f-b6183019b930",
+    "ParentId": "474ce4a8-d92c-470a-8383-9f61a9bee6ee",
     "Replies": []
   },
   {
-    "Id": "2c2c9b9a-546b-4292-85db-27be836aef75",
+    "Id": "92742208-7e15-46e4-ab79-1c2976a95a32",
     "Author": "test",
-    "UserId": "4574fa16-1a59-4a43-b6da-0249595f3283",
-    "Content": "yo its me test wus good kings",
-    "Timestamp": "2025-04-19T06:21:55",
+    "UserId": "1912071f-b396-4d57-8501-0553082ca461",
+    "Content": "u n me both king",
+    "Timestamp": "2025-04-19T06:54:13.099Z",
     "Likes": [],
-    "ParentId": null,
-    "Replies": []
-  },
-  {
-    "Id": "e96622f3-a53c-4e39-adb5-3f3c0699a038",
-    "Author": "test",
-    "UserId": "4574fa16-1a59-4a43-b6da-0249595f3283",
-    "Content": "u sound fat tbh",
-    "Timestamp": "2025-04-19T06:22:09.813Z",
-    "Likes": [
-      "4574fa16-1a59-4a43-b6da-0249595f3283"
-    ],
-    "ParentId": "e49b2891-b0c9-40f8-bb94-f747220899e5",
-    "Replies": []
-  },
-  {
-    "Id": "1d554c59-1b28-425a-bd96-8beba2dac5cc",
-    "Author": "test",
-    "UserId": "4574fa16-1a59-4a43-b6da-0249595f3283",
-    "Content": "im schizo not fat",
-    "Timestamp": "2025-04-19T06:22:17.74Z",
-    "Likes": [],
-    "ParentId": "e96622f3-a53c-4e39-adb5-3f3c0699a038",
+    "ParentId": "2c1afe60-067d-4126-8fb0-aa65396a36f4",
     "Replies": []
   }
 ]

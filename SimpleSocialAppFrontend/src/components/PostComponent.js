@@ -32,6 +32,10 @@ const PostComponent = ({ post, user, level = 0, setPosts}) => {
 
   const handleEditSubmit = (e) => {
     e.preventDefault();
+    if (newContent.trim() === "" || newContent.length > 2000) {
+      toast.error("Content must be between 1 and 2000 characters.");
+      return;
+    }
     const timestamp = new Date().toISOString();
     fetch("/api/posts/updatePost", {
       method: "PUT",
@@ -61,6 +65,10 @@ const PostComponent = ({ post, user, level = 0, setPosts}) => {
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
+    if (newComment.trim() === "" || newComment.length > 2000) {
+      toast.error("Comment must be between 1 and 2000 characters.");
+      return;
+    }
     const timestamp = new Date().toISOString();
     const uuid = uuidv4();
 
@@ -155,20 +163,27 @@ const PostComponent = ({ post, user, level = 0, setPosts}) => {
     <div style={{ marginLeft: level === 0 ? "0px" : "40px", marginTop: '10px', color: "#00408C" }}>
       {isEditing ? (
         <form onSubmit={handleEditSubmit}>
-          <div style={{ display: "flex", gap: "0.5rem", marginBottom: "0.5rem" }}>
-            <FaRegUserCircle style={{ fontSize: "2rem" }}/>
+        <div style={{ display: "flex", gap: "0.5rem", marginBottom: "0.5rem", position: "relative" }}>
+          <FaRegUserCircle style={{ fontSize: "2rem" }}/>
+          <div style={{ position: "relative", flex: 1 }}>
             <textarea
               className="post-textarea" 
               value={newContent}
-              onChange={(e) => setNewContent(e.target.value)}
+              onChange={(e) => {
+                if (e.target.value.length <= 2000) setNewContent(e.target.value);
+              }}
               rows={3}
             />
+            <span style={{ position: "absolute", bottom: "4px", right: "8px", fontSize: "0.75rem", color: "#666" }}>
+              {newContent.length}/2000
+            </span>
           </div>
-          <div className="align-right" style={{ gap: "0.5rem" }}>
-            <button className="submit-post" type="submit">Save</button>
-            <button className="cancel-post" type="button" onClick={handleEditToggle}>Cancel</button>
-          </div>
-        </form>
+        </div>
+        <div className="align-right" style={{ gap: "0.5rem" }}>
+          <button className="submit-post" type="submit" disabled={newContent.trim() === ""}>Save</button>
+          <button className="cancel-post" type="button" onClick={handleEditToggle}>Cancel</button>
+        </div>
+      </form>      
       ) : (
         <>
           <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "-0.5rem" }}>
@@ -245,18 +260,25 @@ const PostComponent = ({ post, user, level = 0, setPosts}) => {
           </div>
             {isCommenting ? (
               <form onSubmit={handleCommentSubmit}>
-                <div style={{ display: "flex", gap: "0.5rem", marginBottom: "0.5rem", marginTop: "0.5rem" }}>
+                <div style={{ display: "flex", gap: "0.5rem", marginBottom: "0.5rem", marginTop: "0.5rem", position: "relative" }}>
                   <FaRegUserCircle style={{ fontSize: "2rem" }}/>
-                  <textarea
-                    className="post-textarea"
-                    placeholder="Send a reply." 
-                    value={newComment}
-                    onChange={(e) => setNewComment(e.target.value)}
-                    rows={3}
-                  />
+                  <div style={{ position: "relative", flex: 1 }}>
+                    <textarea
+                      className="post-textarea"
+                      placeholder="Send a reply." 
+                      value={newComment}
+                      onChange={(e) => {
+                        if (e.target.value.length <= 2000) setNewComment(e.target.value);
+                      }}
+                      rows={3}
+                    />
+                    <span style={{ position: "absolute", bottom: "4px", right: "8px", fontSize: "0.75rem", color: "#666" }}>
+                      {newComment.length}/2000
+                    </span>
+                  </div>
                 </div>
                 <div className="align-right" style={{ gap: "0.5rem" }}>
-                  <button className="submit-post" type="submit">Send</button>
+                  <button className="submit-post" type="submit" disabled={newComment.trim() === ""}>Send</button>
                   <button className="cancel-post" type="button" onClick={handleCommentToggle}>Cancel</button>
                 </div>
               </form>
