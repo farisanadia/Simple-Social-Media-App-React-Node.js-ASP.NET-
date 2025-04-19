@@ -14,7 +14,7 @@ cd into backend: `dotnet run`
 - login:
 ![image info](./images/Login.png)
 - main:
-![image info](./images/main.png)
+![image info](./images/Main.png)
 
 ## TODO:
 
