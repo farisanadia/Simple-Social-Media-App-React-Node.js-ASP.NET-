@@ -8,5 +8,10 @@
     "Id": "02c8ba2e-ecc1-4c40-b9de-aec44549ae74",
     "Username": "kingfarisa",
     "PasswordHash": "$2a$11$.GLvnk5RWj0JMXLou2gl1uJeqVotkfJ6lUM.ZPTPxgIOg7yXdVxma"
+  },
+  {
+    "Id": "4574fa16-1a59-4a43-b6da-0249595f3283",
+    "Username": "test",
+    "PasswordHash": "$2a$11$iDgSL8Wt71t.eY3N0kJuI.ZdXSLg/w1qrM20GJdW8NBDfvxDSPq6u"
   }
 ]

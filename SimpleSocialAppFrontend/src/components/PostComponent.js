@@ -12,8 +12,11 @@ const PostComponent = ({ post, user, level = 0, setPosts}) => {
   const [isEditing, setIsEditing] = useState(false);
   const [newComment, setNewComment] = useState("");
   const [isCommenting, setIsCommenting] = useState(false);
+  const [localPost, setLocalPost] = useState(post);
+
 
   const handleEditToggle = () => {
+    console.log(post);
     setIsEditing(!isEditing);
     if (isEditing) {
       setIsCommenting(false);
@@ -84,7 +87,7 @@ const PostComponent = ({ post, user, level = 0, setPosts}) => {
         toast.success("Comment uploaded succesfully.")
       } else {
         const err = await res.json();
-       toast.error(err.message || "An unexpected error occured.")
+        toast.error(err.message || "An unexpected error occured.")
       }
     })
     .catch(err => console.error("Error:", err));
@@ -93,8 +96,9 @@ const PostComponent = ({ post, user, level = 0, setPosts}) => {
   const handleSubmitLike = (e) => {
     e.preventDefault();
     console.log(post)
+
     let isLiked = false;
-    if (post.likes) { isLiked = post.likes.includes(user.id); 
+    if (localPost.likes) { isLiked = localPost.likes.includes(user.id); 
       console.log("Reached")
      };
 
@@ -109,8 +113,15 @@ const PostComponent = ({ post, user, level = 0, setPosts}) => {
       })
     })
     .then(() => {
-      console.log("like submitted");
-      window.location.reload();
+      console.log("like submitted"); 
+      const updatedLikes = isLiked
+        ? localPost.likes.filter(id => id !== user.id)
+        : [...(localPost.likes || []), user.id];
+
+      setLocalPost({
+        ...localPost,
+        likes: updatedLikes
+      });
     })
     .catch(err => console.error("Error liking post:", err));
   }
@@ -181,10 +192,10 @@ const PostComponent = ({ post, user, level = 0, setPosts}) => {
                   }}
                 >
                   <FaHeart
-                    className={ post.likes?.includes(user.id) ? "liked" : "post-buttons"}
+                    className={localPost.likes?.includes(user.id) ? "liked" : "post-buttons"}
                   />
                 </button>
-                <span style={{ fontSize: "1rem" }}>{post.likes?.length || 0}</span>
+                <span style={{ fontSize: "1rem" }}>{localPost.likes?.length || 0}</span>
               </div>
 
               <button

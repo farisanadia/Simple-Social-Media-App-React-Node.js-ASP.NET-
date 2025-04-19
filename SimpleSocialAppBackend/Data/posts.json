@@ -17,8 +17,64 @@
     "UserId": "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50",
     "Content": "wassup",
     "Timestamp": "2025-04-18T15:32:03.218Z",
-    "Likes": [],
+    "Likes": [
+      "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50"
+    ],
     "ParentId": "127bcea4-69d1-4740-8153-e3e26c5004bb",
+    "Replies": []
+  },
+  {
+    "Id": "522b603f-ae39-41a5-b52f-b6183019b930",
+    "Author": "farisa",
+    "UserId": "177fe4b0-e33f-4dbe-b4d4-6211bf83ce50",
+    "Content": "hi guys its me farisa",
+    "Timestamp": "2025-04-19T06:21:18",
+    "Likes": [
+      "4574fa16-1a59-4a43-b6da-0249595f3283"
+    ],
+    "ParentId": null,
+    "Replies": []
+  },
+  {
+    "Id": "e49b2891-b0c9-40f8-bb94-f747220899e5",
+    "Author": "test",
+    "UserId": "4574fa16-1a59-4a43-b6da-0249595f3283",
+    "Content": "hi farisa im test \u003E\u003C",
+    "Timestamp": "2025-04-19T06:21:44.89Z",
+    "Likes": [],
+    "ParentId": "522b603f-ae39-41a5-b52f-b6183019b930",
+    "Replies": []
+  },
+  {
+    "Id": "2c2c9b9a-546b-4292-85db-27be836aef75",
+    "Author": "test",
+    "UserId": "4574fa16-1a59-4a43-b6da-0249595f3283",
+    "Content": "yo its me test wus good kings",
+    "Timestamp": "2025-04-19T06:21:55",
+    "Likes": [],
+    "ParentId": null,
+    "Replies": []
+  },
+  {
+    "Id": "e96622f3-a53c-4e39-adb5-3f3c0699a038",
+    "Author": "test",
+    "UserId": "4574fa16-1a59-4a43-b6da-0249595f3283",
+    "Content": "u sound fat tbh",
+    "Timestamp": "2025-04-19T06:22:09.813Z",
+    "Likes": [
+      "4574fa16-1a59-4a43-b6da-0249595f3283"
+    ],
+    "ParentId": "e49b2891-b0c9-40f8-bb94-f747220899e5",
+    "Replies": []
+  },
+  {
+    "Id": "1d554c59-1b28-425a-bd96-8beba2dac5cc",
+    "Author": "test",
+    "UserId": "4574fa16-1a59-4a43-b6da-0249595f3283",
+    "Content": "im schizo not fat",
+    "Timestamp": "2025-04-19T06:22:17.74Z",
+    "Likes": [],
+    "ParentId": "e96622f3-a53c-4e39-adb5-3f3c0699a038",
     "Replies": []
   }
 ]
